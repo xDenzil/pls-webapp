@@ -1,0 +1,32 @@
+/* .dashboard-wrapper {
+    min-height: min-content;
+} */
+
+.nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
+    margin-top: 8px;
+}
+
+.nav-left-sidebar .nav-link[data-toggle="collapse"][aria-expanded="false"]:after {
+    margin-top: 8px;
+}
+
+.nav-left-sidebar .nav-link[data-toggle="collapse"]:after {
+    margin-top: 8px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+}
+
+.dashboard-main-wrapper {
+    padding-top: 0;
+}
+
+.nav-left-sidebar {
+    top: 0;
+}
+
+.dashboard-wrapper {
+    min-height: 100vh !important;
+}
