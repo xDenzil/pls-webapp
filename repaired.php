@@ -33,21 +33,21 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
                             <li class="nav-divider">Main</li>
-                            <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fa fa-fw fa-rocket"></i>Dashboard <span class="badge badge-success">6</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="dashboard.php"><i class="fa fa-fw fa-rocket"></i>Dashboard <span class="badge badge-success">6</span></a></li>
                             <li class="nav-divider">Data</li>
-                            <li class="nav-item"><a class="nav-link" href="map.html"><i class="fa fa-fw fa-map-marker-alt"></i>Pothole Map<span class="badge badge-success">6</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="map.php"><i class="fa fa-fw fa-map-marker-alt"></i>Pothole Map<span class="badge badge-success">6</span></a></li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-database"></i>Database</a>
                                 <div id="submenu-5" class="submenu collapse show">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link p-3" href="active.html">Active Potholes</a>
+                                            <a class="nav-link p-3" href="active.php">Active Potholes</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active p-3" href="urgent.html">Urgent Potholes</a>
+                                            <a class="nav-link p-3" href="urgent.php">Urgent Potholes</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link p-3" href="repaired.html">Repaired Potholes</a>
+                                            <a class="nav-link active p-3" href="repaired.php">Repaired Potholes</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -55,7 +55,7 @@
                             <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-fw fa-chart-pie"></i>Statistics<span class="badge badge-success">6</span></a></li>
                             <li class="nav-divider">User</li>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="login.html"><i class="fa fa-fw fa-power-off"></i>Logout <span class="badge badge-success">6</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="login.php"><i class="fa fa-fw fa-power-off"></i>Logout <span class="badge badge-success">6</span></a></li>
                         </ul>
                     </div>
                 </nav>
@@ -74,12 +74,12 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Urgent Potholes</h2>
+                            <h2 class="pageheader-title">Repaired Potholes</h2>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a class="breadcrumb-link">Database</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Urgent Potholes</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Repaired Potholes</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -510,7 +510,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.php5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
     <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>

@@ -16,7 +16,7 @@
         body {
             height: 100%;
         }
-        
+
         body {
             display: -ms-flexbox;
             display: flex;
@@ -39,7 +39,7 @@
                 <span class="splash-description">Enter login information.</span>
             </div>
             <div class="card-body">
-                <form action="dashboard.html">
+                <form action="dashboard.php">
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="username" type="text" placeholder="Username" autocomplete="off" />
                     </div>
@@ -48,12 +48,12 @@
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" /><span class="custom-control-label">Remember Me</span>
-              </label>
+                            <input class="custom-control-input" type="checkbox" /><span class="custom-control-label">Remember Me</span>
+                        </label>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">
-              Sign in
-            </button>
+                        Sign in
+                    </button>
                 </form>
             </div>
             <div class="card-footer bg-white p-0">
