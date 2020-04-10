@@ -129,7 +129,13 @@ $result = $conn->query($sql);
                                                                 <td>null</td>
                                                                 <td>null</td>
                                                                 <td>" . $row["detected"] . "</td>
-                                                                <td>" . $row["status"] . "</td>
+                                                                <td>");
+                                                    if ($row["status"] == 'Normal') {
+                                                        echo ("<span class='mr-2'> <span class='badge-dot badge-primary'></span>Normal</span>");
+                                                    } else {
+                                                        echo ("<span class='mr-2'> <span class='badge-dot badge-danger'></span>Urgent</span>");
+                                                    };
+                                                    echo ("</td>
                                                                 <td>null</td>
                                                             </tr>");
                                                 }
