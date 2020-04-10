@@ -1,0 +1,18 @@
+CREATE TABLE `l6ccblkqef08hptd`.`potholes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `longitude` DOUBLE NOT NULL,
+  `latitude` DOUBLE NOT NULL,
+  `status` VARCHAR(45) NOT NULL DEFAULT 'Normal',
+  `detected` DATETIME NULL,
+  `location` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+  INSERT INTO `potholes` (`longitude`, `latitude`, `detected`) VALUES
+(-77.915703, 18.468800, '2020-04-10'),
+(-77.915703, 18.468800, '2020-04-10'),
+(-77.915703, 18.468800, '2020-04-10'),
+(-77.915703, 18.468800, '2020-04-10'),
+(-77.915703, 18.468800, '2020-04-10'),
+(-77.915703, 18.468800, '2020-04-10'),
+(-77.915703, 18.468800, '2020-04-10'),
+(-77.915703, 18.468800, '2020-04-10');
