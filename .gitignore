@@ -1,4 +1,4 @@
-/pages
-/unused
-pages/
-unused/
+# Packages #
+############
+./pages
+./unused
