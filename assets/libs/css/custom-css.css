@@ -35,3 +35,11 @@
 /* .nav-left-sidebar .submenu .nav .nav-item .nav-link {
     padding: 8px;
 } */
+
+#map {
+    height: 100%;
+}
+
+.mp {
+    height: 100vh;
+}

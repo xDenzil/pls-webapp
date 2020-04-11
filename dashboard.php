@@ -39,9 +39,6 @@
                                             <a class="nav-link p-3" href="active.php">Active Potholes</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link p-3" href="urgent.php">Urgent Potholes</a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a class="nav-link p-3" href="repaired.php">Repaired Potholes</a>
                                         </li>
                                     </ul>
@@ -172,7 +169,7 @@
                             <blockquote class="blockquote mb-0">
                                 <p>Some imortant text should go here..</p>
                                 <footer class="blockquote-footer text-white">
-                                    <small>Some other text <cite title="Source Title">for here</cite>        </small>
+                                    <small>Some other text <cite title="Source Title">for here</cite> </small>
                                 </footer>
                             </blockquote>
                         </div>

@@ -54,9 +54,6 @@ $result = $conn->query($sql);
                                             <a class="nav-link active p-3" href="active.php">Active Potholes</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link p-3" href="urgent.php">Urgent Potholes</a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a class="nav-link p-3" href="repaired.php">Repaired Potholes</a>
                                         </li>
                                     </ul>

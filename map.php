@@ -39,9 +39,6 @@
                                             <a class="nav-link p-3" href="active.php">Active Potholes</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link p-3" href="urgent.php">Urgent Potholes</a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a class="nav-link p-3" href="repaired.php">Repaired Potholes</a>
                                         </li>
 
@@ -62,12 +59,24 @@
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
-        <div class="dashboard-wrapper bg-primary">
-            <div class="container-fluid dashboard-content">
+        <div class="dashboard-wrapper bg-primary mp">
+            <div id="map"></div>
+            <script>
+                var map;
+
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: {
+                            lat: 18.091699,
+                            lng: -77.363632
+                        },
+                        zoom: 10
+                    });
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDD8Lkn1IXMPD2QPb-nrcmD60Ec52U4YE&callback=initMap" async defer></script>
 
 
-
-            </div>
             <!-- CONTAINER END -->
 
 
