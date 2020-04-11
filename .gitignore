@@ -1,10 +1,6 @@
 # Packages #
 ############
-./pages
-./unused
 /unused
 /pages
-unused/
-pages/
-/unused
-/pages
+/database/connection.php
+config.js
