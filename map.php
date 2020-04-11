@@ -74,7 +74,7 @@
                     });
                 }
             </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDD8Lkn1IXMPD2QPb-nrcmD60Ec52U4YE&callback=initMap" async defer></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=" + AIzaSyDDD8Lkn1IXMPD2QPb-nrcmD60Ec52U4YE +"&callback=initMap" async defer></script>
 
 
             <!-- CONTAINER END -->
