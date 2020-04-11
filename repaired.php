@@ -1,3 +1,10 @@
+<?php
+session_start();
+include './database/connection.php';
+
+$sql = "SELECT * FROM potholes WHERE repaired=1";
+$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,14 +113,31 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>null</td>
-                                                <td>null</td>
-                                                <td>null</td>
-                                                <td>null</td>
-                                                <td>null</td>
-                                                <td>null</td>
-                                            </tr>
+                                            <?php
+                                            if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo ("<tr>
+                                                                <td>" . $row["id"] . "</td>
+                                                                <td>" . $row['street'] . "</td>
+                                                                <td>" . $row['parish'] . "</td>
+                                                                <td>" . $row["date"] . "</td>
+                                                                <td>");
+                                                    if ($row["status"] == 'Normal') {
+                                                        echo ("<span class='mr-2'> <span class='badge-dot badge-primary'></span>Normal</span>");
+                                                    } else {
+                                                        echo ("<span class='mr-2'> <span class='badge-dot badge-secondary'></span>Urgent</span>");
+                                                    };
+                                                    echo ("</td>
+                                                                <td>null</td>
+                                                            </tr>");
+                                                }
+                                            } else {
+                                                echo "0 results";
+                                            }
+                                            $conn->close();
+
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

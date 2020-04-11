@@ -2,10 +2,14 @@
 
 session_start();
 include './database/connection.php';
-$query_most_recent = "SELECT * FROM potholes ORDER BY detected DESC LIMIT 4;";
-$query_urgent = "SELECT * FROM potholes WHERE status='Urgent' ORDER BY detected DESC LIMIT 4;";
-$result_most_recent = $conn->query($query_most_recent);
+$query_detected = "SELECT * FROM potholes ORDER BY date DESC;";
+$query_urgent = "SELECT * FROM potholes WHERE status='Urgent' ORDER BY date DESC;";
+$query_repaired = "SELECT * FROM potholes WHERE repaired=1;";
+
+
+$result_detected = $conn->query($query_detected);
 $result_urgent = $conn->query($query_urgent);
+$result_repaired = $conn->query($query_repaired);
 
 ?>
 
@@ -105,7 +109,14 @@ $result_urgent = $conn->query($query_urgent);
                             <div class="card-body">
                                 <div class="d-inline-block">
                                     <h5 class="text-muted">Potholes<br>Detected</h5>
-                                    <h2 class="mb-0">24</h2>
+                                    <h2 class="mb-0">
+                                        <?php
+                                        $detected_count = 0;
+                                        $detected_count += mysqli_num_rows($result_detected);
+                                        echo ($detected_count);
+                                        mysqli_close($conn);
+                                        ?>
+                                    </h2>
                                 </div>
                                 <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
                                     <i class="fa fa-eye fa-fw fa-sm text-info"></i>
@@ -123,27 +134,15 @@ $result_urgent = $conn->query($query_urgent);
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-inline-block">
-                                    <h5 class="text-muted">Potholes<br>Active</h5>
-                                    <h2 class="mb-0"> 20</h2>
-                                </div>
-                                <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
-                                    <i class="fa fa-exclamation fa-fw fa-sm text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- end total followers   -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- partnerships   -->
-                    <!-- ============================================================== -->
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-inline-block">
                                     <h5 class="text-muted">Potholes<br>Repaired</h5>
-                                    <h2 class="mb-0">4</h2>
+                                    <h2 class="mb-0">
+                                        <?php
+                                        $repaired_count = 0;
+                                        $repaired_count += mysqli_num_rows($result_repaired);
+                                        echo ($repaired_count);
+                                        mysqli_close($conn);
+                                        ?>
+                                    </h2>
                                 </div>
                                 <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
                                     <i class="fa fa-wrench fa-fw fa-sm text-brand"></i>
@@ -161,8 +160,40 @@ $result_urgent = $conn->query($query_urgent);
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-inline-block">
+                                    <h5 class="text-muted">Potholes<br>Active</h5>
+                                    <h2 class="mb-0">
+                                        <?php
+                                        $active_count = $detected_count - $repaired_count;
+                                        echo ($active_count);
+                                        ?>
+
+                                    </h2>
+                                </div>
+                                <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+                                    <i class="fa fa-exclamation fa-fw fa-sm text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end total followers   -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- partnerships   -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-inline-block">
                                     <h5 class="text-muted">Marked<br>Urgent</h5>
-                                    <h2 class="mb-0">1</h2>
+                                    <h2 class="mb-0">
+                                        <?php
+                                        $urgent_count = 0;
+                                        $urgent_count += mysqli_num_rows($result_urgent);
+                                        mysqli_close($conn);
+                                        echo ($urgent_count);
+                                        ?>
+                                    </h2>
                                 </div>
                                 <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
                                     <i class="fa fa-exclamation-triangle fa-fw fa-sm text-secondary"></i>
@@ -199,19 +230,20 @@ $result_urgent = $conn->query($query_urgent);
                                     <thead>
                                         <tr>
                                             <th>Street</th>
-                                            <th>Detected Date</th>
-                                            <th>Status</th>
+                                            <th>Parish</th>
+                                            <th>Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if ($result_most_recent->num_rows > 0) {
+                                        if ($result_detected->num_rows > 0) {
                                             // output data of each row
-                                            while ($row2 = $result_most_recent->fetch_assoc()) {
+                                            for ($i = 0; $i < 3; $i++) {
+                                                $row2 = $result_detected->fetch_assoc();
                                                 echo ("<tr>
-                                                            <td>" . $row2["location"] . "</td>
-                                                            <td>Kingston & St. Andrew</td>
-                                                            <td>" . $row2["detected"] . "</td>
+                                                            <td>" . $row2["street"] . "</td>
+                                                            <td>" . $row2["parish"] . "</td>
+                                                            <td>" . $row2["date"] . "</td>
                                                         </tr>");
                                             }
                                         } else {
@@ -234,19 +266,20 @@ $result_urgent = $conn->query($query_urgent);
                                     <thead>
                                         <tr>
                                             <th>Street</th>
-                                            <th>Detected Date</th>
-                                            <th>Action</th>
+                                            <th>Parish</th>
+                                            <th>Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         if ($result_urgent->num_rows > 0) {
                                             // output data of each row
-                                            while ($row = $result_urgent->fetch_assoc()) {
+                                            for ($z = 0; $z < 3; $z++) {
+                                                $row3 = $result_urgent->fetch_assoc();
                                                 echo ("<tr>
-                                                            <td>" . $row["location"] . "</td>
-                                                            <td>Kingston & St. Andrew</td>
-                                                            <td>" . $row["detected"] . "</td>
+                                                            <td>" . $row3["street"] . "</td>
+                                                            <td>" . $row3["parish"] . "</td>
+                                                            <td>" . $row3["date"] . "</td>
                                                         </tr>");
                                             }
                                         } else {

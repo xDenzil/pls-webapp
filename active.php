@@ -2,7 +2,7 @@
 session_start();
 include './database/connection.php';
 
-$sql = "SELECT * FROM potholes";
+$sql = "SELECT * FROM potholes WHERE repaired=0";
 $result = $conn->query($sql);
 
 ?>
@@ -123,17 +123,19 @@ $result = $conn->query($sql);
                                                 while ($row = $result->fetch_assoc()) {
                                                     echo ("<tr>
                                                                 <td>" . $row["id"] . "</td>
-                                                                <td>" . $row['location'] . "</td>
-                                                                <td>Kingston & St. Andrew</td>
-                                                                <td>" . $row["detected"] . "</td>
+                                                                <td>" . $row['street'] . "</td>
+                                                                <td>" . $row['parish'] . "</td>
+                                                                <td>" . $row["date"] . "</td>
                                                                 <td>");
                                                     if ($row["status"] == 'Normal') {
                                                         echo ("<span class='mr-2'> <span class='badge-dot badge-primary'></span>Normal</span>");
                                                     } else {
-                                                        echo ("<span class='mr-2'> <span class='badge-dot badge-danger'></span>Urgent</span>");
+                                                        echo ("<span class='mr-2'> <span class='badge-dot badge-secondary'></span>Urgent</span>");
                                                     };
                                                     echo ("</td>
-                                                                <td>null</td>
+                                                                <td>
+                                                                <a href='#' class='btn btn-primary btn-xs'>Mark Repaired</a>
+                                                                </td>
                                                             </tr>");
                                                 }
                                             } else {
