@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+include './database/connection.php';
+$query_most_recent = "SELECT * FROM potholes ORDER BY detected DESC LIMIT 4;";
+$query_urgent = "SELECT * FROM potholes WHERE status='Urgent' ORDER BY detected DESC LIMIT 4;";
+$result_most_recent = $conn->query($query_most_recent);
+$result_urgent = $conn->query($query_urgent);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -150,7 +162,7 @@
                             <div class="card-body">
                                 <div class="d-inline-block">
                                     <h5 class="text-muted">Marked<br>Urgent</h5>
-                                    <h2 class="mb-0">0</h2>
+                                    <h2 class="mb-0">1</h2>
                                 </div>
                                 <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
                                     <i class="fa fa-exclamation-triangle fa-fw fa-sm text-secondary"></i>
@@ -188,30 +200,26 @@
                                         <tr>
                                             <th>Street</th>
                                             <th>Detected Date</th>
-                                            <th>Action</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                        </tr>
+                                        <?php
+                                        if ($result_most_recent->num_rows > 0) {
+                                            // output data of each row
+                                            while ($row2 = $result_most_recent->fetch_assoc()) {
+                                                echo ("<tr>
+                                                            <td>" . $row2["location"] . "</td>
+                                                            <td>Kingston & St. Andrew</td>
+                                                            <td>" . $row2["detected"] . "</td>
+                                                        </tr>");
+                                            }
+                                        } else {
+                                            echo "0 results";
+                                        }
+                                        $conn->close();
+
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -231,26 +239,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                        </tr>
+                                        <?php
+                                        if ($result_urgent->num_rows > 0) {
+                                            // output data of each row
+                                            while ($row = $result_urgent->fetch_assoc()) {
+                                                echo ("<tr>
+                                                            <td>" . $row["location"] . "</td>
+                                                            <td>Kingston & St. Andrew</td>
+                                                            <td>" . $row["detected"] . "</td>
+                                                        </tr>");
+                                            }
+                                        } else {
+                                            echo "0 results";
+                                        }
+                                        $conn->close();
+
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
