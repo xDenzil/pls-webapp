@@ -123,8 +123,8 @@ $result = $conn->query($sql);
                                                 while ($row = $result->fetch_assoc()) {
                                                     echo ("<tr>
                                                                 <td>" . $row["id"] . "</td>
-                                                                <td>null</td>
-                                                                <td>null</td>
+                                                                <td>" . $row['location'] . "</td>
+                                                                <td>Kingston & St. Andrew</td>
                                                                 <td>" . $row["detected"] . "</td>
                                                                 <td>");
                                                     if ($row["status"] == 'Normal') {
