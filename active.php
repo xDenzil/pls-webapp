@@ -134,7 +134,10 @@ $result = $conn->query($sql);
                                                     };
                                                     echo ("</td>
                                                                 <td>
-                                                                <a href='#' class='btn btn-primary btn-xs'>Mark Repaired</a>
+                                                                
+                                                                <a href='#' class='btn btn-success btn-xs'>Repaired</a>
+                                                                <a href='#' class='btn btn-secondary btn-xs'>Urgent</a>
+                                                                <a href='map.php?lat=" . $row['latitude'] . "&long=" . $row['longitude'] . "' class='btn btn-primary btn-xs' role='button'>Pinpoint</a>
                                                                 </td>
                                                             </tr>");
                                                 }

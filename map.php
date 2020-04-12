@@ -1,3 +1,29 @@
+<?php
+
+session_start();
+if (isset($_GET['lat']) && isset($_GET['long'])) {
+    $latitude = $_GET['lat'];
+    $longitude = $_GET['long'];
+    $zoom = 16;
+
+    $marker = 'var marker = new google.maps.Marker({
+        position: pinpoint,
+        map: map,
+        animation: google.maps.Animation.BOUNCE
+    });';
+} else {
+    $latitude = 18.091699;
+    $longitude = -77.363632;
+    $zoom = 10;
+    $marker = null;
+}
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,13 +91,19 @@
                 var map;
 
                 function initMap() {
+                    var pinpoint = {
+                        lat: <?php echo ($latitude) ?>,
+                        lng: <?php echo ($longitude) ?>
+                    }
                     map = new google.maps.Map(document.getElementById('map'), {
-                        center: {
-                            lat: 18.091699,
-                            lng: -77.363632
+                        center: pinpoint,
+                        zoom: <?php echo ($zoom) ?>,
+                        streetViewControl: false,
+                        zoomControlOptions: {
+                            position: google.maps.ControlPosition.RIGHT_CENTER
                         },
-                        zoom: 10
                     });
+                    <?php echo ($marker) ?>
                 }
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAKrYd2b-ceSJOqO-ejr1R1c2qXB51SaM&callback=initMap" async defer></script>

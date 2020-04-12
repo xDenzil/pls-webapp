@@ -3,7 +3,7 @@
 session_start();
 include './database/connection.php';
 $query_detected = "SELECT * FROM potholes ORDER BY date DESC;";
-$query_urgent = "SELECT * FROM potholes WHERE status='Urgent' ORDER BY date DESC;";
+$query_urgent = "SELECT * FROM potholes WHERE status='Urgent' AND repaired=0 ORDER BY date DESC;";
 $query_repaired = "SELECT * FROM potholes WHERE repaired=1;";
 
 
