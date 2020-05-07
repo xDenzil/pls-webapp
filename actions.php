@@ -11,7 +11,7 @@ if($action == 'delete'){
 }
 
 if($action =='repaired'){
- $sql_query =  "UPDATE potholes SET repaired = '1' WHERE id = " . $id . "';";
+ $sql_query =  "UPDATE potholes SET repaired = '1' WHERE id = '" . $id . "';";
 }
 
 $result = $conn->query($sql_query) or die("Failed to execute query");;
