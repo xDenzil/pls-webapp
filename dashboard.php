@@ -210,10 +210,10 @@ $result_repaired = $conn->query($query_repaired);
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card bg-primary text-white text-center p-3">
                             <blockquote class="blockquote mb-0">
-                                <p><strong>The Autonomous Pothole Detection Project</strong></p>
+                                <p class='mb-2'><strong>The Autonomous Pothole Detection Project</strong></p>
                                 <footer class="blockquote-footer text-white">
                                     Use this web application to navigate and manipulate the data being sent by the PLS, a physical pothole detection
-                                    device mounted on roaming vehicles in Kingston, Jamaica. You may complete <a href="https://forms.gle/uWo22dULdoutxGMAA" style="color:white;text-decoration: underline;"><strong>this survey</strong></a> whenever you're ready, this is of course voluntary.
+                                    device mounted on roaming vehicles in Kingston, Jamaica. You may complete <a href="https://forms.gle/uWo22dULdoutxGMAA" style="color:white;text-decoration: underline;">this survey</a> whenever you're ready, this is of course voluntary.
                                 </footer>
                             </blockquote>
                         </div>
