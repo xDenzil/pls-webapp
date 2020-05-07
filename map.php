@@ -2,6 +2,7 @@
 
 session_start();
 if (isset($_GET['lat']) && isset($_GET['long'])) {
+    $path = 'pinpoint';
     $latitude = $_GET['lat'];
     $longitude = $_GET['long'];
     $zoom = 16;
@@ -12,6 +13,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
         animation: google.maps.Animation.BOUNCE
     });';
 } else {
+    $path = 'all';
     $latitude = 18.091699;
     $longitude = -77.363632;
     $zoom = 10;
@@ -88,9 +90,31 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
         <div class="dashboard-wrapper bg-primary mp">
             <div id="map"></div>
             
-            <script>      
             
-        function initMap() {
+            
+            <script>   
+                
+                if(<?php echo path ?>=='pinpoint'){
+                   var map;
+
+                function initMap() {
+                    var pinpoint = {
+                        lat: <?php echo ($latitude) ?>,
+                        lng: <?php echo ($longitude) ?>
+                    }
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: pinpoint,
+                        zoom: <?php echo ($zoom) ?>,
+                        streetViewControl: false,
+                        zoomControlOptions: {
+                            position: google.maps.ControlPosition.RIGHT_CENTER
+                        },
+                    });
+                    <?php echo ($marker) ?>
+                }
+                   }
+                   else {
+                      function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng(17.9762011, -76.7945833),
           zoom: 12
@@ -151,6 +175,9 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
       }
 
       function doNothing() {}
+                   }
+            
+     
             </script>
             
             <script async defer
