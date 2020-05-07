@@ -89,15 +89,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             <div id="map"></div>
             
             <script>      
-                var customLabel = {
-        restaurant: {
-          label: 'R'
-        },
-        bar: {
-          label: 'B'
-        }
-      };
-
+            
         function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng(17.9762011, -76.7945833),
@@ -116,25 +108,10 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
               var point = new google.maps.LatLng(
                   parseFloat(markerElem.getAttribute('lat')),
                   parseFloat(markerElem.getAttribute('lng')));
-
-              var infowincontent = document.createElement('div');
-              var strong = document.createElement('strong');
-              strong.textContent = street
-              infowincontent.appendChild(strong);
-              infowincontent.appendChild(document.createElement('br'));
-
-              var text = document.createElement('text');
-              text.textContent = parish
-              infowincontent.appendChild(text);
-              var icon = customLabel[type] || {};
+         
               var marker = new google.maps.Marker({
                 map: map,
                 position: point,
-                label: icon.label
-              });
-              marker.addListener('click', function() {
-                infoWindow.setContent(infowincontent);
-                infoWindow.open(map, marker);
               });
             });
           });
