@@ -117,7 +117,11 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng(17.9762011, -76.7945833),
-          zoom: 12
+          zoom: <?php echo ($zoom) ?>,
+                        streetViewControl: false,
+                        zoomControlOptions: {
+                            position: google.maps.ControlPosition.RIGHT_CENTER
+                        },
         });
         var infoWindow = new google.maps.InfoWindow;
 
