@@ -98,7 +98,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
         var infoWindow = new google.maps.InfoWindow;
 
           // Change this depending on the name of your PHP or XML file
-          downloadUrl('markers.xml', function(data) {
+          downloadUrl('markers.php', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
             Array.prototype.forEach.call(markers, function(markerElem) {
@@ -112,12 +112,12 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
               
               var infowincontent = document.createElement('div');
               var strong = document.createElement('strong');
-              strong.textContent = street
+              strong.textContent = street;
               infowincontent.appendChild(strong);
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = 'Street' + street
+              text.textContent = 'Lat: ' + parseFloat(markerElem.getAttribute('lat')) + ' Long: ' + parseFloat(markerElem.getAttribute('lng')) + '<br>' + parish;
               infowincontent.appendChild(text);
                 
               var marker = new google.maps.Marker({
