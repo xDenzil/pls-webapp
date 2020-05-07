@@ -117,7 +117,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = street
+              text.textContent = 'Street' + street
               infowincontent.appendChild(text);
                 
               var marker = new google.maps.Marker({
