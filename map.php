@@ -89,7 +89,16 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             <div id="map"></div>
             
             <script>
-               function initMap() {
+                  var customLabel = {
+        restaurant: {
+          label: 'R'
+        },
+        bar: {
+          label: 'B'
+        }
+      };
+
+        function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng($latitude, $longitude),
           zoom: 12
@@ -111,12 +120,12 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
 
               var infowincontent = document.createElement('div');
               var strong = document.createElement('strong');
-              strong.textContent = name
+              strong.textContent = street
               infowincontent.appendChild(strong);
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = address
+              text.textContent = parish
               infowincontent.appendChild(text);
               var icon = customLabel[type] || {};
               var marker = new google.maps.Marker({
@@ -132,23 +141,25 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
           });
         }
 
-                
-                function downloadUrl(url,callback) {
- var request = window.ActiveXObject ?
-     new ActiveXObject('Microsoft.XMLHTTP') :
-     new XMLHttpRequest;
 
- request.onreadystatechange = function() {
-   if (request.readyState == 4) {
-     request.onreadystatechange = doNothing;
-     callback(request, request.status);
-   }
- };
 
- request.open('GET', url, true);
- request.send(null);
-}
-                function doNothing() {}
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+
+      function doNothing() {}
             </script>
             
             <script async defer
