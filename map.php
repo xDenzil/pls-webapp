@@ -109,14 +109,15 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                   parseFloat(markerElem.getAttribute('lat')),
                   parseFloat(markerElem.getAttribute('lng')));
     
-                var infowincontent = document.createElement('div');
+              
+              var infowincontent = document.createElement('div');
               var strong = document.createElement('strong');
-              strong.textContent = 'hi';
+              strong.textContent = street
               infowincontent.appendChild(strong);
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = 'ello';
+              text.textContent = street
               infowincontent.appendChild(text);
                 
               var marker = new google.maps.Marker({
