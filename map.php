@@ -94,7 +94,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             
             <script>   
                 
-                if(<?php echo path ?>=='pinpoint'){
+                if(<?php echo $path ?>=='pinpoint'){
                    var map;
 
                 function initMap() {
