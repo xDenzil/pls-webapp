@@ -14,7 +14,7 @@ return $xmlStr;
 }
 
 // Select all the rows in the markers table
-$query = "SELECT * FROM potholes WHERE 1";
+$query = "SELECT * FROM potholes WHERE repaired=0";
 //$result = mysqli_query($query); this the code from google api
 
 $result = $conn->query($query);
