@@ -7,10 +7,14 @@ $id = $_GET['id'];
 $action = $_GET['action'];
 
 if($action == 'delete'){
-  $sql_delete = "DELETE FROM potholes WHERE id='" . $id . "';";
+  $sql_query = "DELETE FROM potholes WHERE id='" . $id . "';";
 }
 
-$result = $conn->query($sql_delete) or die("Failed to delete item");;
+if($action =='repaired'){
+ $sql_query =  "UPDATE potholes SET repaired = '1' WHERE id = " . $id . "';";
+}
+
+$result = $conn->query($sql_query) or die("Failed to execute query");;
 header('Location: active.php');
 
 
