@@ -43,3 +43,8 @@
 .mp {
     height: 100vh;
 }
+
+.gm-style .gm-style-iw-c {
+ color: black;
+    box-shadow: none;
+}
