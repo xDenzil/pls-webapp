@@ -210,9 +210,11 @@ $result_repaired = $conn->query($query_repaired);
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card bg-primary text-white text-center p-3">
                             <blockquote class="blockquote mb-0">
-                                <p>Some imortant text should go here..</p>
+                                <p>The Autonomous Pothole Detection Project</p>
                                 <footer class="blockquote-footer text-white">
-                                    <small>Some other text <cite title="Source Title">for here</cite> </small>
+                                    <small>A pilot project by a group of University of Technology, Jamaica Students. Use this
+                                    web application to navigate and manipulate the data sent by the PLS, a physical pothole detection
+                                    device mounted on roaming vehicles.</small>
                                 </footer>
                             </blockquote>
                         </div>
