@@ -212,8 +212,8 @@ $result_repaired = $conn->query($query_repaired);
                             <blockquote class="blockquote mb-0">
                                 <p>The Autonomous Pothole Detection Project</p>
                                 <footer class="blockquote-footer text-white">
-                                    <small>Use this web application to navigate and manipulate the data being sent by the PLS, a physical pothole detection
-                                    device mounted on roaming vehicles.<br>You may complete <a href="https://forms.gle/uWo22dULdoutxGMAA" style="color:white"><strong>this survey</strong></a> whenever you're ready, this is of course voluntary.</small>
+                                    Use this web application to navigate and manipulate the data being sent by the PLS, a physical pothole detection
+                                    device mounted on roaming vehicles in Kingston, Jamaica.<br>You may complete <a href="https://forms.gle/uWo22dULdoutxGMAA" style="color:white"><strong>this survey</strong></a> whenever you're ready, this is of course voluntary.
                                 </footer>
                             </blockquote>
                         </div>
