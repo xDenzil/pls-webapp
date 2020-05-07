@@ -107,7 +107,7 @@ $result = $conn->query($sql);
                                     <table id="example" class="table table-striped table-bordered second" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Index</th
+                                                <th>Index</th>
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
                                                 <th>Street/Road</th>
@@ -140,8 +140,8 @@ $result = $conn->query($sql);
                                                                 <td>
                                                                 
                                                                 <a href='#' class='btn btn-success btn-xs'>Repaired</a>
-                                                                <a href='#' class='btn btn-secondary btn-xs'>Urgent</a>
                                                                 <a href='map.php?lat=" . $row['latitude'] . "&long=" . $row['longitude'] . "' class='btn btn-primary btn-xs' role='button'>Pinpoint</a>
+                                                                <a href='#' class='btn btn-secondary btn-xs'>Delete</a>
                                                                 </td>
                                                             </tr>");
                                                 }
