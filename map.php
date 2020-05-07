@@ -116,7 +116,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                 else {
                     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(<?php echo ($latitude) ?, <?php echo ($longitude) ?),
+          center: new google.maps.LatLng(<?php echo ($latitude) ?>, <?php echo ($longitude) ?>),
           zoom: <?php echo ($zoom) ?>,
                         streetViewControl: false,
                         zoomControlOptions: {
