@@ -112,12 +112,12 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
               
               var infowincontent = document.createElement('div');
               var strong = document.createElement('strong');
-              strong.textContent = street;
+              strong.textContent = street + ', ' + parish;
               infowincontent.appendChild(strong);
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = 'Lat: ' + parseFloat(markerElem.getAttribute('lat')) + ' Long: ' + parseFloat(markerElem.getAttribute('lng')) + '<br>' + parish;
+              text.textContent = 'Lat: ' + parseFloat(markerElem.getAttribute('lat')) + ' Long: ' + parseFloat(markerElem.getAttribute('lng'));
               infowincontent.appendChild(text);
                 
               var marker = new google.maps.Marker({
