@@ -104,7 +104,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
               var id = markerElem.getAttribute('id');
               var street = markerElem.getAttribute('street');
               var parish = markerElem.getAttribute('parish');
-              var date = markerElem.getAttribute('date');
+              var detected = markerElem.getAttribute('detected');
               var point = new google.maps.LatLng(
                   parseFloat(markerElem.getAttribute('lat')),
                   parseFloat(markerElem.getAttribute('lng')));
