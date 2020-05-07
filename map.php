@@ -108,12 +108,17 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
               var point = new google.maps.LatLng(
                   parseFloat(markerElem.getAttribute('lat')),
                   parseFloat(markerElem.getAttribute('lng')));
-                var contentString = 'haha';
-                var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
+    
+                var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = 'hi';
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
 
- 
+              var text = document.createElement('text');
+              text.textContent = 'ello';
+              infowincontent.appendChild(text);
+                
               var marker = new google.maps.Marker({
                 map: map,
                 position: point,
