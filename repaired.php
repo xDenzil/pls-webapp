@@ -103,8 +103,10 @@ $result = $conn->query($sql);
                                 <div class="table-responsive">
                                     <table id="example" class="table table-striped table-bordered second" style="width:100%">
                                         <thead>
-                                            <tr>
+                                           <tr>
                                                 <th>Index</th>
+                                                <th>Latitude</th>
+                                                <th>Longitude</th>
                                                 <th>Street/Road</th>
                                                 <th>Parish</th>
                                                 <th>Detection Date</th>
@@ -119,6 +121,8 @@ $result = $conn->query($sql);
                                                 while ($row = $result->fetch_assoc()) {
                                                     echo ("<tr>
                                                                 <td>" . $row["id"] . "</td>
+                                                                <td>" . $row['latitude'] . "</td>
+                                                                <td>" . $row['longitude'] . "</td>
                                                                 <td>" . $row['street'] . "</td>
                                                                 <td>" . $row['parish'] . "</td>
                                                                 <td>" . $row["date"] . "</td>
@@ -129,7 +133,11 @@ $result = $conn->query($sql);
                                                         echo ("<span class='mr-2'> <span class='badge-dot badge-secondary'></span>Urgent</span>");
                                                     };
                                                     echo ("</td>
-                                                                <td>null</td>
+                                                                <td>
+                                                                   <a href='actions.php?id=" . $row['id'] . "&action=unrepaired' class='btn btn-dark btn-xs' role='button'>Revert Repaired Status</a>
+                                                                <a href='map.php?lat=" . $row['latitude'] . "&long=" . $row['longitude'] . "' class='btn btn-primary btn-xs' role='button'>Pinpoint</a>
+                                                                <a href='actions.php?id=" . $row['id'] . "&action=delete' role='button' class='btn btn-secondary btn-xs'>Delete</a>
+                                                                </td>
                                                             </tr>");
                                                 }
                                             } else {
