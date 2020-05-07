@@ -87,25 +87,69 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
         <!-- ============================================================== -->
         <div class="dashboard-wrapper bg-primary mp">
             <div id="map"></div>
+            
             <script>
-                var map;
+               function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(-33.863276, 151.207977),
+          zoom: 12
+        });
+        var infoWindow = new google.maps.InfoWindow;
 
-                function initMap() {
-                    var pinpoint = {
-                        lat: <?php echo ($latitude) ?>,
-                        lng: <?php echo ($longitude) ?>
-                    }
-                    map = new google.maps.Map(document.getElementById('map'), {
-                        center: pinpoint,
-                        zoom: <?php echo ($zoom) ?>,
-                        streetViewControl: false,
-                        zoomControlOptions: {
-                            position: google.maps.ControlPosition.RIGHT_CENTER
-                        },
-                    });
-                    <?php echo ($marker) ?>
-                }
+          // Change this depending on the name of your PHP or XML file
+          downloadUrl('markers.php', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var id = markerElem.getAttribute('id');
+              var street = markerElem.getAttribute('street');
+              var parish = markerElem.getAttribute('parish');
+              var date = markerElem.getAttribute('date');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('lat')),
+                  parseFloat(markerElem.getAttribute('lng')));
+
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = name
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+
+              var text = document.createElement('text');
+              text.textContent = address
+              infowincontent.appendChild(text);
+              var icon = customLabel[type] || {};
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label
+              });
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+            });
+          });
+        }
+
+                
+                function downloadUrl(url,callback) {
+ var request = window.ActiveXObject ?
+     new ActiveXObject('Microsoft.XMLHTTP') :
+     new XMLHttpRequest;
+
+ request.onreadystatechange = function() {
+   if (request.readyState == 4) {
+     request.onreadystatechange = doNothing;
+     callback(request, request.status);
+   }
+ };
+
+ request.open('GET', url, true);
+ request.send(null);
+}
             </script>
+            
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAKrYd2b-ceSJOqO-ejr1R1c2qXB51SaM&callback=initMap" async defer></script>
 
 
