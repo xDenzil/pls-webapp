@@ -15,7 +15,7 @@ $result = $conn->query($sql);
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>PLS - Database oh</title>
+    <title>PLS - Database</title>
     <!-- Bootstrap CSS -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
@@ -109,6 +109,8 @@ $result = $conn->query($sql);
                                             <tr>
                                                 <th>Index</th>
                                                 <th>Street/Road</th>
+                                                <th>Latitude</th>
+                                                <th>Longitude</th>
                                                 <th>Parish</th>
                                                 <th>Detection Date</th>
                                                 <th>Status</th>
@@ -124,6 +126,8 @@ $result = $conn->query($sql);
                                                     echo ("<tr>
                                                                 <td>" . $row["id"] . "</td>
                                                                 <td>" . $row['street'] . "</td>
+                                                                <td>" . $row['latitude'] . "</td>
+                                                                <td>" . $row['longitude'] . "</td>
                                                                 <td>" . $row['parish'] . "</td>
                                                                 <td>" . $row["date"] . "</td>
                                                                 <td>");
