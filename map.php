@@ -93,8 +93,8 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             
             
             <script>   
-                
-                if(<?php echo ($path)?>=='pinpoint'){
+                var path = <?php echo ($path)?>;
+                if(var == 'pinpoint'){
                     alert("Pinpoint");
                 }
                 else {
