@@ -100,13 +100,13 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
 
         function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(-33.863276, 151.207977),
+          center: new google.maps.LatLng(17.9762011, -76.7945833),
           zoom: 12
         });
         var infoWindow = new google.maps.InfoWindow;
 
           // Change this depending on the name of your PHP or XML file
-          downloadUrl('markers.php', function(data) {
+          downloadUrl('markers.xml', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
             Array.prototype.forEach.call(markers, function(markerElem) {
