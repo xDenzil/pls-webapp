@@ -15,7 +15,7 @@ $result = $conn->query($sql);
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>PLS - Database</title>
+    <title>PLS - Database oh</title>
     <!-- Bootstrap CSS -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
