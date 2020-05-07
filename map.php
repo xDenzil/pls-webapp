@@ -91,7 +91,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             <script>
                function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(-33.863276, 151.207977),
+          center: new google.maps.LatLng($latitude, $longitude),
           zoom: 12
         });
         var infoWindow = new google.maps.InfoWindow;
@@ -148,9 +148,11 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
  request.open('GET', url, true);
  request.send(null);
 }
+                function doNothing() {}
             </script>
             
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAKrYd2b-ceSJOqO-ejr1R1c2qXB51SaM&callback=initMap" async defer></script>
+            <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAKrYd2b-ceSJOqO-ejr1R1c2qXB51SaM&callback=initMap"></script>
 
 
             <!-- CONTAINER END -->
