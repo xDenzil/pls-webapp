@@ -107,10 +107,10 @@ $result = $conn->query($sql);
                                     <table id="example" class="table table-striped table-bordered second" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Index</th>
-                                                <th>Street/Road</th>
+                                                <th>Index</th
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
+                                                <th>Street/Road</th>
                                                 <th>Parish</th>
                                                 <th>Detection Date</th>
                                                 <th>Status</th>
@@ -125,9 +125,9 @@ $result = $conn->query($sql);
                                                 while ($row = $result->fetch_assoc()) {
                                                     echo ("<tr>
                                                                 <td>" . $row["id"] . "</td>
-                                                                <td>" . $row['street'] . "</td>
                                                                 <td>" . $row['latitude'] . "</td>
                                                                 <td>" . $row['longitude'] . "</td>
+                                                                <td>" . $row['street'] . "</td>                                                                
                                                                 <td>" . $row['parish'] . "</td>
                                                                 <td>" . $row["date"] . "</td>
                                                                 <td>");
