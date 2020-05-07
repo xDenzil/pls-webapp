@@ -141,7 +141,7 @@ $result = $conn->query($sql);
                                                                 
                                                                 <a href='#' class='btn btn-success btn-xs'>Repaired</a>
                                                                 <a href='map.php?lat=" . $row['latitude'] . "&long=" . $row['longitude'] . "' class='btn btn-primary btn-xs' role='button'>Pinpoint</a>
-                                                                <a href='#' class='btn btn-secondary btn-xs'>Delete</a>
+                                                                <a href='actions.php?id=" . $row['id'] . "&action=delete' role='button' class='btn btn-secondary btn-xs'>Delete</a>
                                                                 </td>
                                                             </tr>");
                                                 }
