@@ -19,7 +19,7 @@ if($action =='unrepaired'){
 }
 
 $result = $conn->query($sql_query) or die("Failed to execute query");;
-//header('Location: active.php');
+header('Location: active.php');
 
 
 
