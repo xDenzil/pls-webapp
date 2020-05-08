@@ -147,7 +147,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                                 text.textContent = 'Lat: ' + parseFloat(markerElem.getAttribute('lat')) + ' Long: ' + parseFloat(markerElem.getAttribute('lng'));
                                 infowincontent.appendChild(text);
 
-                                var markers=[];
+                                var markerss=[];
 
                                 var marker = new google.maps.Marker({
                                     map: map,
@@ -158,9 +158,9 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                                     infoWindow.setContent(infowincontent);
                                     infoWindow.open(map, marker);
                                 });
-                                markers.push(marker);
-                                var markerCluster = new MarkerClusterer(map, markers);
+                                markerss.push(marker);
                             });
+                            var markerCluster = new MarkerClusterer(map, markerss);
                         });
                        
 
