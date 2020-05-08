@@ -292,7 +292,7 @@ function time_elapsed_string($datetime, $full = false) {
 
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Urgent</h5>
+                            <div class="card-header d-flex justify-content-between align-items-center"><h5 class="m-0 p-0">Urgent Attention</h5> <a href="#" class="btn btn-secondary btn-xs">See All <i class='fas fa-arrow-right ml-1'></i></a></div>
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered first">
                                     <thead>
