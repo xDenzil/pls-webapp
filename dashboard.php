@@ -245,7 +245,7 @@ $result_repaired = $conn->query($query_repaired);
                                                 echo ("<tr>
                                                             <td>" . $row2["street"] . "</td>
                                                             <td>" . $row2["parish"] . "</td>
-                                                            <td>" . time_elapsed_string($row2["date"], true) . "</td>
+                                                            <td>" . $row2["date"] . "</td>
                                                         </tr>");
                                             }
                                         } else {
