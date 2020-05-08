@@ -91,9 +91,8 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             <div id="map"></div>
             
             
-            <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+            
             <script>   
-                var markers = [];
                 var path = '<?php echo ($path)?>';
                 if(path == 'pinpoint'){
                     var map;
@@ -149,13 +148,10 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
               text.textContent = 'Lat: ' + parseFloat(markerElem.getAttribute('lat')) + ' Long: ' + parseFloat(markerElem.getAttribute('lng'));
               infowincontent.appendChild(text);
                 
-              
-                
               var marker = new google.maps.Marker({
                 map: map,
                 position: point,
               });
-                markers.push(marker);
                 marker.addListener('click', function() {
                 infoWindow.setContent(infowincontent);
                 infoWindow.open(map, marker);
@@ -163,9 +159,6 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             });
           });
         }
-                    
-                    var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
 
 
@@ -190,7 +183,6 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             
      
             </script>
-            
             
             <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAKrYd2b-ceSJOqO-ejr1R1c2qXB51SaM&callback=initMap"></script>
