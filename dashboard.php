@@ -2,6 +2,7 @@
 
 session_start();
 include './database/connection.php';
+include 'functions.php';
 $query_detected = "SELECT * FROM potholes ORDER BY date DESC;";
 $query_urgent = "SELECT * FROM potholes WHERE status='Urgent' AND repaired=0 ORDER BY date DESC;";
 $query_repaired = "SELECT * FROM potholes WHERE repaired=1;";
@@ -244,7 +245,7 @@ $result_repaired = $conn->query($query_repaired);
                                                 echo ("<tr>
                                                             <td>" . $row2["street"] . "</td>
                                                             <td>" . $row2["parish"] . "</td>
-                                                            <td>" . $row2["date"] . "</td>
+                                                            <td>" . time_elapsed_string($row2["date"], true) . "</td>
                                                         </tr>");
                                             }
                                         } else {
