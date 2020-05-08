@@ -2,7 +2,7 @@
 
 session_start();
 include './database/connection.php';
-include 'functions.php';
+
 $query_detected = "SELECT * FROM potholes ORDER BY date DESC;";
 $query_urgent = "SELECT * FROM potholes WHERE status='Urgent' AND repaired=0 ORDER BY date DESC;";
 $query_repaired = "SELECT * FROM potholes WHERE repaired=1;";
@@ -11,6 +11,36 @@ $query_repaired = "SELECT * FROM potholes WHERE repaired=1;";
 $result_detected = $conn->query($query_detected);
 $result_urgent = $conn->query($query_urgent);
 $result_repaired = $conn->query($query_repaired);
+
+
+function time_elapsed_string($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
 
 ?>
 
@@ -233,7 +263,7 @@ $result_repaired = $conn->query($query_repaired);
                                         <tr>
                                             <th>Street</th>
                                             <th>Parish</th>
-                                            <th>Date</th>
+                                            <th>Timestamp</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -245,7 +275,7 @@ $result_repaired = $conn->query($query_repaired);
                                                 echo ("<tr>
                                                             <td>" . $row2["street"] . "</td>
                                                             <td>" . $row2["parish"] . "</td>
-                                                            <td>" . $row2["date"] . "</td>
+                                                            <td>" . time_elapsed_string($row2["date"], true) . "</td>
                                                         </tr>");
                                             }
                                         } else {
