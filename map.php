@@ -159,9 +159,10 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                                     infoWindow.open(map, marker);
                                 });
                                 markers.push(marker);
+                                var markerCluster = new MarkerClusterer(map, markers);
                             });
                         });
-                        var markerCluster = new MarkerClusterer(map, markers);
+                       
 
                     }
 
