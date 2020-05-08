@@ -128,6 +128,8 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                         downloadUrl('markers.php', function(data) {
                             var xml = data.responseXML;
                             var markers = xml.documentElement.getElementsByTagName('marker');
+                            var markerss=[];
+                            
                             Array.prototype.forEach.call(markers, function(markerElem) {
                                 var id = markerElem.getAttribute('id');
                                 var street = markerElem.getAttribute('street');
@@ -147,7 +149,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                                 text.textContent = 'Lat: ' + parseFloat(markerElem.getAttribute('lat')) + ' Long: ' + parseFloat(markerElem.getAttribute('lng'));
                                 infowincontent.appendChild(text);
 
-                                var markerss=[];
+                                
 
                                 var marker = new google.maps.Marker({
                                     map: map,
