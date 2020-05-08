@@ -183,7 +183,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             
      
             </script>
-            
+            <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
             <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAKrYd2b-ceSJOqO-ejr1R1c2qXB51SaM&callback=initMap"></script>
 
