@@ -93,6 +93,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
             
             <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
             <script>   
+                var markers = [];
                 var path = '<?php echo ($path)?>';
                 if(path == 'pinpoint'){
                     var map;
@@ -148,7 +149,7 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
               text.textContent = 'Lat: ' + parseFloat(markerElem.getAttribute('lat')) + ' Long: ' + parseFloat(markerElem.getAttribute('lng'));
               infowincontent.appendChild(text);
                 
-              var markers = [];
+              
                 
               var marker = new google.maps.Marker({
                 map: map,
