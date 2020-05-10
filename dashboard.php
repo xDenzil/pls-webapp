@@ -13,7 +13,8 @@ $result_urgent = $conn->query($query_urgent);
 $result_repaired = $conn->query($query_repaired);
 
 
-function time_elapsed_string($datetime, $full = false) {
+function time_elapsed_string($datetime, $full = false)
+{
     $now = new DateTime;
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);
@@ -256,7 +257,9 @@ function time_elapsed_string($datetime, $full = false) {
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center"><h5 class="m-0 p-0">Most Recenly Detected</h5> <a href="active.php" class="btn btn-primary btn-xs">See All <i class='fas fa-arrow-right ml-1'></i></a></div>
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="m-0 p-0">Most Recenly Detected</h5> <a href="active.php" class="btn btn-primary btn-xs">See All <i class='fas fa-arrow-right ml-1'></i></a>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered first">
                                     <thead>
@@ -292,7 +295,9 @@ function time_elapsed_string($datetime, $full = false) {
 
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center"><h5 class="m-0 p-0">Urgent Attention</h5> <a href="#" class="btn btn-secondary btn-xs">See All <i class='fas fa-arrow-right ml-1'></i></a></div>
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="m-0 p-0">Urgent Attention</h5> <a href="#" class="btn btn-secondary btn-xs">See All <i class='fas fa-arrow-right ml-1'></i></a>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered first">
                                     <thead>

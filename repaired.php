@@ -103,7 +103,7 @@ $result = $conn->query($sql);
                                 <div class="table-responsive">
                                     <table id="example" class="table table-striped table-bordered second" style="width:100%">
                                         <thead>
-                                           <tr>
+                                            <tr>
                                                 <th>Index</th>
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
