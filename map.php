@@ -162,7 +162,9 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                                 });
                                 markerss.push(marker);
                             });
-                            var markerCluster = new MarkerClusterer(map, markerss);
+                            var markerCluster = new MarkerClusterer(map, markerss, {
+                                imagePath: './images/m'
+                            });
                         });
 
 
