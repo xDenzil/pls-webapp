@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include './database/connection.php';
+include '../database/connection.php';
 
 $id = $_GET['id'];
 $action = $_GET['action'];
@@ -19,4 +19,4 @@ if ($action == 'unrepaired') {
 }
 
 $result = $conn->query($sql_query) or die("Failed to execute query");;
-header('Location: active.php');
+header('Location: ../active.php');

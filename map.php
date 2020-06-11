@@ -6,18 +6,11 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
     $latitude = $_GET['lat'];
     $longitude = $_GET['long'];
     $zoom = 16;
-
-    $marker = 'var marker = new google.maps.Marker({
-        position: pinpoint,
-        map: map,
-        animation: google.maps.Animation.BOUNCE
-    });';
 } else {
     $path = 'all';
     $latitude = 18.091699;
     $longitude = -77.363632;
     $zoom = 10;
-    $marker = null;
 }
 
 
@@ -47,85 +40,43 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
     <!-- main wrapper -->
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper">
-        <!-- ============================================================== -->
-        <!-- left sidebar -->
-        <!-- ============================================================== -->
-        <div class="nav-left-sidebar sidebar-dark">
-            <div class="menu-list">
-                <nav class="navbar navbar-expand-lg navbar-light"><a class="d-xl-none d-lg-none">Menu</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
-                            <li class="nav-divider">Main</li>
-                            <li class="nav-item"><a class="nav-link" href="dashboard.php"><i class="fa fa-fw fa-rocket"></i>Dashboard <span class="badge badge-success">6</span></a></li>
-                            <li class="nav-divider">Data</li>
-                            <li class="nav-item"><a class="nav-link active" href="map.php"><i class="fa fa-fw fa-map-marker-alt"></i>Pothole Map<span class="badge badge-success">6</span></a></li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-database"></i>Database</a>
-                                <div id="submenu-5" class="submenu collapse">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link p-3" href="active.php">Active Potholes</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link p-3" href="repaired.php">Repaired Potholes</a>
-                                        </li>
 
-                                </div>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-fw fa-chart-pie"></i>Statistics<span class="badge badge-success">6</span></a></li>
-                            <li class="nav-divider">User</li>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="login.php"><i class="fa fa-fw fa-power-off"></i>Logout <span class="badge badge-success">6</span></a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end left sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- wrapper  -->
-        <!-- ============================================================== -->
+        <?php
+        $_SESSION['link'] = 'map';
+        require_once('navigation.php'); // Dynamically loading the navigation bar from one source
+        ?>
         <div class="dashboard-wrapper bg-primary mp">
             <div id="map"></div>
-
-
-
             <script>
                 var path = '<?php echo ($path) ?>';
-                if (path == 'pinpoint') {
-                    var map;
 
-                    function initMap() {
-                        var pinpoint = {
-                            lat: <?php echo ($latitude) ?>,
-                            lng: <?php echo ($longitude) ?>
-                        }
-                        map = new google.maps.Map(document.getElementById('map'), {
-                            center: pinpoint,
-                            zoom: <?php echo ($zoom) ?>,
-                            streetViewControl: false,
-                            zoomControlOptions: {
-                                position: google.maps.ControlPosition.RIGHT_CENTER
-                            },
-                        });
-                        <?php echo ($marker) ?>
+                var map;
+
+                function initMap() {
+                    var pinpoint = {
+                        lat: <?php echo ($latitude) ?>,
+                        lng: <?php echo ($longitude) ?>
                     }
-                } else {
-                    function initMap() {
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            center: new google.maps.LatLng(<?php echo ($latitude) ?>, <?php echo ($longitude) ?>),
-                            zoom: <?php echo ($zoom) ?>,
-                            streetViewControl: false,
-                            zoomControlOptions: {
-                                position: google.maps.ControlPosition.RIGHT_CENTER
-                            },
-                        });
-                        var infoWindow = new google.maps.InfoWindow;
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: pinpoint,
+                        zoom: <?php echo ($zoom) ?>,
+                        streetViewControl: false,
+                        zoomControlOptions: {
+                            position: google.maps.ControlPosition.RIGHT_CENTER
+                        },
+                    });
 
-                        // Change this depending on the name of your PHP or XML file
-                        downloadUrl('markers.php', function(data) {
+                    var infoWindow = new google.maps.InfoWindow;
+
+                    if (path == 'pinpoint') {
+                        var marker = new google.maps.Marker({
+                            position: pinpoint,
+                            map: map,
+                            animation: google.maps.Animation.BOUNCE
+                        });
+
+                    } else {
+                        downloadUrl('./scripts/marker_generator.php', function(data) {
                             var xml = data.responseXML;
                             var markers = xml.documentElement.getElementsByTagName('marker');
                             var markerss = [];
@@ -167,37 +118,32 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
                             });
                         });
 
+                        function downloadUrl(url, callback) {
+                            var request = window.ActiveXObject ?
+                                new ActiveXObject('Microsoft.XMLHTTP') :
+                                new XMLHttpRequest;
 
+                            request.onreadystatechange = function() {
+                                if (request.readyState == 4) {
+                                    request.onreadystatechange = doNothing;
+                                    callback(request, request.status);
+                                }
+                            };
+
+                            request.open('GET', url, true);
+                            request.send(null);
+                        }
+
+                        function doNothing() {}
                     }
 
 
-
-                    function downloadUrl(url, callback) {
-                        var request = window.ActiveXObject ?
-                            new ActiveXObject('Microsoft.XMLHTTP') :
-                            new XMLHttpRequest;
-
-                        request.onreadystatechange = function() {
-                            if (request.readyState == 4) {
-                                request.onreadystatechange = doNothing;
-                                callback(request, request.status);
-                            }
-                        };
-
-                        request.open('GET', url, true);
-                        request.send(null);
-                    }
-
-                    function doNothing() {}
                 }
             </script>
             <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAKrYd2b-ceSJOqO-ejr1R1c2qXB51SaM&callback=initMap"></script>
 
-
             <!-- CONTAINER END -->
-
-
 
             <!-- ============================================================== -->
             <!-- footer -->

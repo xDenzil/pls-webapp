@@ -21,12 +21,13 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="./assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/libs/css/style.css">
-    <link rel="stylesheet" href="./assets/libs/css/custom-css.css">
     <link rel="stylesheet" href="./assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" href="./assets/vendor/datatables/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" type="text/css" href="./assets/vendor/datatables/css/buttons.bootstrap4.css">
     <link rel="stylesheet" type="text/css" href="./assets/vendor/datatables/css/select.bootstrap4.css">
     <link rel="stylesheet" type="text/css" href="./assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="assets/libs/css/custom-css.css">
 </head>
 
 <body>
@@ -34,46 +35,10 @@ $result = $conn->query($sql);
     <!-- main wrapper -->
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper">
-        <!-- ============================================================== -->
-        <!-- left sidebar -->
-        <!-- ============================================================== -->
-        <div class="nav-left-sidebar sidebar-dark">
-            <div class="menu-list">
-                <nav class="navbar navbar-expand-lg navbar-light"><a class="d-xl-none d-lg-none">Menu</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
-                            <li class="nav-divider">Main</li>
-                            <li class="nav-item"><a class="nav-link" href="dashboard.php"><i class="fa fa-fw fa-rocket"></i>Dashboard <span class="badge badge-success">6</span></a></li>
-                            <li class="nav-divider">Data</li>
-                            <li class="nav-item"><a class="nav-link" href="map.php"><i class="fa fa-fw fa-map-marker-alt"></i>Pothole Map<span class="badge badge-success">6</span></a></li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-database"></i>Database</a>
-                                <div id="submenu-5" class="submenu collapse show">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link active p-3" href="active.php">Active Potholes</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link p-3" href="repaired.php">Repaired Potholes</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-fw fa-chart-pie"></i>Statistics<span class="badge badge-success">6</span></a></li>
-                            <li class="nav-divider">User</li>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="login.php"><i class="fa fa-fw fa-power-off"></i>Logout <span class="badge badge-success">6</span></a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end left sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- wrapper  -->
-        <!-- ============================================================== -->
+        <?php
+        $_SESSION['link'] = 'active';
+        require_once('navigation.php'); // Dynamically loading the navigation bar from one source
+        ?>
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content">
 
@@ -94,12 +59,71 @@ $result = $conn->query($sql);
                     </div>
                 </div>
 
+                <!-- SEARCH FIELDS -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-header">Batch Operations</div>
+                            <div class="card-body">
+                                <form class="form-search" method="GET">
+                                    <div class="row  align-items-end">
+
+                                        <div class="col-md-6 col-lg-4 pb-2 pb-lg-0">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Street/Road</span>
+                                                </div>
+                                                <input type="text" name="min_price" class="form-control <?php if (isset($price_min_search_error)) {
+                                                                                                            echo "is-invalid";
+                                                                                                        } ?>" type="text" value="<?php echo $_SESSION['price_min_search'] ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">From</span>
+                                                </div>
+                                                <input type="text" name="min_price" class="form-control <?php if (isset($price_min_search_error)) {
+                                                                                                            echo "is-invalid";
+                                                                                                        } ?>" type="text" value="<?php echo $_SESSION['price_min_search'] ?>">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">To</span>
+                                                </div>
+                                                <input type="text" name="max_price" class="form-control <?php if (isset($price_max_search_error)) {
+                                                                                                            echo "is-invalid";
+                                                                                                        } ?>" type="text" value="<?php echo $_SESSION['price_max_search'] ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
+                                            <select class="selectpicker" data-style="btn-light" data-width="100%" name="property_type" title="Status">
+                                                <option>Normal</option>
+                                                <option>Urgent</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
+                                            <input class="btn btn-success text-white btn-block rounded-2" role="submit" name="property_search" type="submit" value="Search">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <!-- ============================================================== -->
                     <!-- data table  -->
                     <!-- ============================================================== -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-12">
                         <div class="card">
 
                             <div class="card-body">
@@ -114,7 +138,9 @@ $result = $conn->query($sql);
                                                 <th>Parish</th>
                                                 <th>Detection Date</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -139,8 +165,12 @@ $result = $conn->query($sql);
                                                     echo ("</td>
                                                                 <td>
                                                                 <a href='map.php?lat=" . $row['latitude'] . "&long=" . $row['longitude'] . "' class='btn btn-primary btn-xs' role='button'>Pinpoint</a>
-                                                                <a href='actions.php?id=" . $row['id'] . "&action=repaired' class='btn btn-success btn-xs' role='button'>Repaired</a>
-                                                                <a href='actions.php?id=" . $row['id'] . "&action=delete' role='button' class='btn btn-secondary btn-xs'>Delete</a>
+                                                                </td>
+                                                                <td>
+                                                                <a href='./scripts/actions.php?id=" . $row['id'] . "&action=repaired' class='btn btn-success btn-xs' role='button'>Repaired</a>
+                                                                </td>
+                                                                <td>
+                                                                <a href='./scripts/actions.php?id=" . $row['id'] . "&action=delete' role='button' class='btn btn-secondary btn-xs'>Delete</a>
                                                                 </td>
                                                             </tr>");
                                                 }
@@ -204,6 +234,7 @@ $result = $conn->query($sql);
     <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 </body>
 
 </html>

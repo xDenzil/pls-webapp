@@ -31,46 +31,10 @@ $result = $conn->query($sql);
     <!-- main wrapper -->
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper">
-        <!-- ============================================================== -->
-        <!-- left sidebar -->
-        <!-- ============================================================== -->
-        <div class="nav-left-sidebar sidebar-dark">
-            <div class="menu-list">
-                <nav class="navbar navbar-expand-lg navbar-light"><a class="d-xl-none d-lg-none">Menu</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
-                            <li class="nav-divider">Main</li>
-                            <li class="nav-item"><a class="nav-link" href="dashboard.php"><i class="fa fa-fw fa-rocket"></i>Dashboard <span class="badge badge-success">6</span></a></li>
-                            <li class="nav-divider">Data</li>
-                            <li class="nav-item"><a class="nav-link" href="map.php"><i class="fa fa-fw fa-map-marker-alt"></i>Pothole Map<span class="badge badge-success">6</span></a></li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-database"></i>Database</a>
-                                <div id="submenu-5" class="submenu collapse show">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link p-3" href="active.php">Active Potholes</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active p-3" href="repaired.php">Repaired Potholes</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-fw fa-chart-pie"></i>Statistics<span class="badge badge-success">6</span></a></li>
-                            <li class="nav-divider">User</li>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="login.php"><i class="fa fa-fw fa-power-off"></i>Logout <span class="badge badge-success">6</span></a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end left sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- wrapper  -->
-        <!-- ============================================================== -->
+        <?php
+        $_SESSION['link'] = 'repaired';
+        require_once('navigation.php'); // Dynamically loading the navigation bar from one source
+        ?>
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content">
 
@@ -135,8 +99,8 @@ $result = $conn->query($sql);
                                                     echo ("</td>
                                                                 <td>
                                                                 <a href='map.php?lat=" . $row['latitude'] . "&long=" . $row['longitude'] . "' class='btn btn-primary btn-xs' role='button'>Pinpoint</a>
-                                                                   <a href='actions.php?id=" . $row['id'] . "&action=unrepaired' class='btn btn-dark btn-xs' role='button'>Revert Repaired Status</a>
-                                                                <a href='actions.php?id=" . $row['id'] . "&action=delete' role='button' class='btn btn-secondary btn-xs'>Delete</a>
+                                                                   <a href='./scripts/actions.php?id=" . $row['id'] . "&action=unrepaired' class='btn btn-dark btn-xs' role='button'>Revert Repaired Status</a>
+                                                                <a href='./scripts/actions.php?id=" . $row['id'] . "&action=delete' role='button' class='btn btn-secondary btn-xs'>Delete</a>
                                                                 </td>
                                                             </tr>");
                                                 }

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include './database/connection.php';
+include '../database/connection.php';
 
 function parseToXML($htmlStr)
 {
@@ -19,7 +19,7 @@ $query = "SELECT * FROM potholes WHERE repaired=0";
 
 $result = $conn->query($query);
 if (!$result) {
-  die('Invalid query: ' . mysqli_error());
+  die('Invalid query.');
 }
 
 header("Content-type: text/xml");

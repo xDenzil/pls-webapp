@@ -1,7 +1,9 @@
 <?php
 
 session_start();
+$_SESSION['link'] = '';
 include './database/connection.php';
+include './scripts/time_elapsed.php';
 
 $query_detected = "SELECT * FROM potholes ORDER BY date DESC;";
 $query_urgent = "SELECT * FROM potholes WHERE status='Urgent' AND repaired=0 ORDER BY date DESC;";
@@ -11,38 +13,6 @@ $query_repaired = "SELECT * FROM potholes WHERE repaired=1;";
 $result_detected = $conn->query($query_detected);
 $result_urgent = $conn->query($query_urgent);
 $result_repaired = $conn->query($query_repaired);
-
-
-function time_elapsed_string($datetime, $full = false)
-{
-    $now = new DateTime;
-    $ago = new DateTime($datetime);
-    $diff = $now->diff($ago);
-
-    $diff->w = floor($diff->d / 7);
-    $diff->d -= $diff->w * 7;
-
-    $string = array(
-        'y' => 'year',
-        'm' => 'month',
-        'w' => 'week',
-        'd' => 'day',
-        'h' => 'hour',
-        'i' => 'minute',
-        's' => 'second',
-    );
-    foreach ($string as $k => &$v) {
-        if ($diff->$k) {
-            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-        } else {
-            unset($string[$k]);
-        }
-    }
-
-    if (!$full) $string = array_slice($string, 0, 1);
-    return $string ? implode(', ', $string) . ' ago' : 'just now';
-}
-
 ?>
 
 
@@ -67,51 +37,12 @@ function time_elapsed_string($datetime, $full = false)
     <!-- main wrapper -->
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper">
-        <!-- ============================================================== -->
-        <!-- left sidebar -->
-        <!-- ============================================================== -->
-        <div class="nav-left-sidebar sidebar-dark">
-            <div class="menu-list">
-                <nav class="navbar navbar-expand-lg navbar-light"><a class="d-xl-none d-lg-none">Menu</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
-                            <li class="nav-divider">Main</li>
-                            <li class="nav-item"><a class="nav-link active" href="dashboard.php"><i class="fa fa-fw fa-rocket"></i>Dashboard <span class="badge badge-success">6</span></a></li>
-                            <li class="nav-divider">Data</li>
-                            <li class="nav-item"><a class="nav-link" href="map.php"><i class="fa fa-fw fa-map-marker-alt"></i>Pothole Map<span class="badge badge-success">6</span></a></li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-database"></i>Database</a>
-                                <div id="submenu-5" class="submenu collapse">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link p-3" href="active.php">Active Potholes</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link p-3" href="repaired.php">Repaired Potholes</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-fw fa-chart-pie"></i>Statistics<span class="badge badge-success">6</span></a></li>
-                            <li class="nav-divider">User</li>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="login.php"><i class="fa fa-fw fa-power-off"></i>Logout <span class="badge badge-success">6</span></a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end left sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- wrapper  -->
-        <!-- ============================================================== -->
+        <?php
+        $_SESSION['link'] = 'dashboard';
+        require_once('navigation.php'); // Dynamically loading the navigation bar from one source
+        ?>
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content">
-
-
-
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">

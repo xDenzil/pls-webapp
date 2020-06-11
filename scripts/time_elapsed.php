@@ -1,4 +1,7 @@
-function time_elapsed_string($datetime, $full = false) {
+<?php
+
+function time_elapsed_string($datetime, $full = false)
+{
     $now = new DateTime;
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);
@@ -11,8 +14,8 @@ function time_elapsed_string($datetime, $full = false) {
         'm' => 'month',
         'w' => 'week',
         'd' => 'day',
-        'h' => 'hour',
-        'i' => 'minute',
+        'h' => 'hr',
+        'i' => 'min',
         's' => 'second',
     );
     foreach ($string as $k => &$v) {
