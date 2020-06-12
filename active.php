@@ -12,12 +12,9 @@ $result = $conn->query($sql);
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>PLS - Database</title>
-    <!-- Bootstrap CSS -->
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="./assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/libs/css/style.css">
@@ -28,6 +25,9 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="./assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="assets/libs/css/custom-css.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./assets/vendor/datepicker/tempusdominus-bootstrap-4.css">
 </head>
 
 <body>
@@ -65,7 +65,7 @@ $result = $conn->query($sql);
                         <div class="card">
                             <div class="card-header">Batch Operations</div>
                             <div class="card-body">
-                                <form class="form-search" method="GET">
+                                <form class="form-search" method="GET" action="./scripts/batch_search.php">
                                     <div class="row  align-items-end">
 
                                         <div class="col-md-6 col-lg-4 pb-2 pb-lg-0">
@@ -73,44 +73,39 @@ $result = $conn->query($sql);
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Street/Road</span>
                                                 </div>
-                                                <input type="text" name="min_price" class="form-control <?php if (isset($price_min_search_error)) {
-                                                                                                            echo "is-invalid";
-                                                                                                        } ?>" type="text" value="<?php echo $_SESSION['price_min_search'] ?>">
+                                                <input type="text" name="street_search" class="form-control <?php if (isset($street_search_error)) {
+                                                                                                                echo "is-invalid";
+                                                                                                            } ?>" type="text" value="<?php echo $_SESSION['street_search'] ?>">
                                             </div>
                                         </div>
 
 
                                         <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">From</span>
+                                            <div class="input-group date" name="fromm" id="datetimepicker4" data-target-input="nearest">
+                                                <div class="input-group-prepend" data-target="#datetimepicker4">
+                                                    <div class="input-group-text">From</div>
                                                 </div>
-                                                <input type="text" name="min_price" class="form-control <?php if (isset($price_min_search_error)) {
-                                                                                                            echo "is-invalid";
-                                                                                                        } ?>" type="text" value="<?php echo $_SESSION['price_min_search'] ?>">
+                                                <input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker4" name="date_from_search" id="from">
                                             </div>
-
                                         </div>
                                         <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">To</span>
+                                            <div class="input-group date" name="too" id="datetimepicker5" data-target-input="nearest">
+                                                <div class="input-group-prepend" data-target="#datetimepicker5">
+                                                    <div class="input-group-text">To</div>
                                                 </div>
-                                                <input type="text" name="max_price" class="form-control <?php if (isset($price_max_search_error)) {
-                                                                                                            echo "is-invalid";
-                                                                                                        } ?>" type="text" value="<?php echo $_SESSION['price_max_search'] ?>">
+                                                <input type="text" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker5" name="date_to_search" id="to">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
-                                            <select class="selectpicker" data-style="btn-light" data-width="100%" name="property_type" title="Status">
+                                            <select class="selectpicker" data-style="btn-light mb-0" data-width="100%" name="status_search" title="Status">
                                                 <option>Normal</option>
                                                 <option>Urgent</option>
                                             </select>
                                         </div>
 
                                         <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
-                                            <input class="btn btn-success text-white btn-block rounded-2" role="submit" name="property_search" type="submit" value="Search">
+                                            <input class="btn btn-success text-white btn-block rounded-2 mb-0" role="submit" name="batch_search" type="submit" value="Search">
                                         </div>
                                     </div>
                                 </form>
@@ -193,22 +188,52 @@ $result = $conn->query($sql);
 
             </div>
 
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <div class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">Copyright © D Williams, T Morgan, S Palmer, R Bromfield, K Blackwood.</div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div class="text-md-right footer-links d-none d-sm-block"><a href="javascript: void(0);">About</a><a href="javascript: void(0);">Support</a><a href="javascript: void(0);">Contact Us</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- end footer -->
-            <!-- ============================================================== -->
+
+            <?php require_once('footer.php'); ?>
+
+            <!--
+            <script>
+                $(document).ready(function() {
+                    $('#example').DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [{
+                                extend: 'copyHtml5',
+                                className: 'btn btn-outline-light buttons-copy buttons-html5',
+                                exportOptions: {
+                                    columns: [0, 1, 2, 3, 4, 5, 6]
+                                }
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                className: 'btn btn-outline-light buttons-excel buttons-html5',
+                                exportOptions: {
+                                    columns: [0, 1, 2, 3, 4, 5, 6]
+                                }
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                className: 'btn btn-outline-light buttons-pdf buttons-html5',
+                                exportOptions: {
+                                    columns: [0, 1, 2, 3, 4, 5, 6]
+                                }
+                            },
+                            {
+                                extend: 'print',
+                                className: 'btn btn-outline-light buttons-print buttons-html5',
+                                exportOptions: {
+                                    columns: [0, 1, 2, 3, 4, 5, 6]
+                                }
+                            },
+                            {
+                                extend: 'colvis',
+                                className: 'btn btn-outline-light buttons-collection dropdown-toggle buttons-colvis',
+                            }
+                        ]
+                    });
+                });
+            </script>
+            -->
+
         </div>
     </div>
     <!-- ============================================================== -->
@@ -220,6 +245,8 @@ $result = $conn->query($sql);
     <script src="./assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <script src="./assets/vendor/multi-select/js/jquery.multi-select.js"></script>
     <script src="./assets/libs/js/main-js.js"></script>
+
+
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="./assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
@@ -234,6 +261,37 @@ $result = $conn->query($sql);
     <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+
+
+
+
+
+
+
+    <!--
+    <script src="./assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="./assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="./assets/vendor/datatables/js/data-table.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>-->
+
+
+
+    <script src="./assets/vendor/datepicker/moment.js"></script>
+    <script src="./assets/vendor/datepicker/tempusdominus-bootstrap-4.js"></script>
+    <script src="./assets/vendor/datepicker/datepicker.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 </body>
 

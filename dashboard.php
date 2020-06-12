@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-$_SESSION['link'] = '';
 include './database/connection.php';
 include './scripts/time_elapsed.php';
 
@@ -41,6 +40,8 @@ $result_repaired = $conn->query($query_repaired);
         $_SESSION['link'] = 'dashboard';
         require_once('navigation.php'); // Dynamically loading the navigation bar from one source
         ?>
+
+
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content">
                 <div class="row">
@@ -61,12 +62,8 @@ $result_repaired = $conn->query($query_repaired);
                 </div>
 
                 <div class="row">
-                    <!-- ============================================================== -->
-                    <!-- four widgets   -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- total views   -->
-                    <!-- ============================================================== -->
+
+
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
@@ -87,12 +84,8 @@ $result_repaired = $conn->query($query_repaired);
                             </div>
                         </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- end total views   -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- total followers   -->
-                    <!-- ============================================================== -->
+
+
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
@@ -113,12 +106,8 @@ $result_repaired = $conn->query($query_repaired);
                             </div>
                         </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- end partnerships   -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- total earned   -->
-                    <!-- ============================================================== -->
+
+
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
@@ -138,12 +127,8 @@ $result_repaired = $conn->query($query_repaired);
                             </div>
                         </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- end total followers   -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- partnerships   -->
-                    <!-- ============================================================== -->
+
+
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
@@ -164,9 +149,8 @@ $result_repaired = $conn->query($query_repaired);
                             </div>
                         </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- end total earned   -->
-                    <!-- ============================================================== -->
+
+
                 </div>
 
                 <div class="row">
@@ -262,30 +246,11 @@ $result_repaired = $conn->query($query_repaired);
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <!-- CONTAINER END -->
 
+            <?php require_once('footer.php'); ?>
 
-
-
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <div class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">Copyright © D Williams, T Morgan, S Palmer, R Bromfield, K Blackwood.</div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                            <div class="text-md-right footer-links d-none d-sm-block"><a href="javascript: void(0);">About</a><a href="javascript: void(0);">Support</a><a href="javascript: void(0);">Contact Us</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- end footer -->
-            <!-- ============================================================== -->
         </div>
     </div>
     <!-- ============================================================== -->
