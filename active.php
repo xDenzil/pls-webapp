@@ -144,13 +144,16 @@ $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
                                                 while ($row = $result->fetch_assoc()) {
+                                                    $date = date_create($row["date"]);
+                                                    $formatted_date = date_format($date, "d-m-y h:i A");
+
                                                     echo ("<tr>
                                                                 <td>" . $row["id"] . "</td>
                                                                 <td>" . $row['latitude'] . "</td>
                                                                 <td>" . $row['longitude'] . "</td>
                                                                 <td>" . $row['street'] . "</td>                                                                
                                                                 <td>" . $row['parish'] . "</td>
-                                                                <td>" . $row["date"] . "</td>
+                                                                <td>" . $formatted_date . "</td>
                                                                 <td>");
                                                     if ($row["status"] == 'Normal') {
                                                         echo ("<span class='mr-2'> <span class='badge-dot badge-primary'></span>Normal</span>");
