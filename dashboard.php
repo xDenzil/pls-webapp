@@ -197,7 +197,7 @@ $result_repaired = $conn->query($query_repaired);
                                                         </tr>");
                                             }
                                         } else {
-                                            echo "0 results";
+                                            echo "<tr><td>No results at the moment.</td></tr>";
                                         }
                                         $conn->close();
 
@@ -235,7 +235,7 @@ $result_repaired = $conn->query($query_repaired);
                                                         </tr>");
                                             }
                                         } else {
-                                            echo "0 results";
+                                            echo "<tr><td>No results at the moment.</td></tr>";
                                         }
                                         $conn->close();
 

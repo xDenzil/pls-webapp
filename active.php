@@ -2,7 +2,7 @@
 session_start();
 include './database/connection.php';
 
-$sql = "SELECT * FROM potholes WHERE repaired=0";
+$sql = "SELECT * FROM potholes WHERE repaired=0 ORDER BY date DESC";
 $result = $conn->query($sql);
 
 ?>
@@ -173,7 +173,7 @@ $result = $conn->query($sql);
                                                             </tr>");
                                                 }
                                             } else {
-                                                echo "0 results";
+                                                echo "<p>No results at the moment.</p>";
                                             }
                                             $conn->close();
 
