@@ -40,8 +40,8 @@ if ($_SESSION['link'] == 'map') {
                     <li class="nav-divider">Data</li>
                     <li class="nav-item"><a class="nav-link <?php echo $map ?>" href="map.php"><i class="fa fa-fw fa-map-marker-alt"></i>Pothole Map<span class="badge badge-success">6</span></a></li>
                     <li class="nav-item"><a class="nav-link <?php echo $active ?>" href="active.php"><i class="fa fa-fw fa-database"></i>Active Potholes<span class="badge badge-success">6</span></a></li>
-                    <li class="nav-item"><a class="nav-link <?php echo $repaired ?>" href="repaired.php"><i class="fa fa-fw fa-database"></i>Repaired Potholes<span class="badge badge-success">6</span></a></li>
-                    <li class="nav-item"><a class="nav-link <?php echo $verification ?>" href="pothole-verification.php"><i class="fa fa-fw fa-pen-square"></i>Pothole Verification<span class="badge badge-success">6</span></a></li>
+                    <li class="nav-item"><a class="nav-link <?php echo $repaired ?>" href="repaired.php"><i class="fa fa-fw fa-wrench"></i>Repaired Potholes<span class="badge badge-success">6</span></a></li>
+                    <li class="nav-item"><a class="nav-link <?php echo $verification ?>" href="pothole-verification.php"><i class="fa fa-fw fa-clipboard-check"></i>Pothole Verification<span class="badge badge-success">6</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-fw fa-chart-pie"></i>Statistics<span class="badge badge-success">6</span></a></li>
                     <li class="nav-divider">User</li>
                     </li>

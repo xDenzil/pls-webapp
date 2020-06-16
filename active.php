@@ -2,7 +2,7 @@
 session_start();
 include './database/connection.php';
 
-$sql = "SELECT * FROM potholes WHERE repaired=0 ORDER BY date DESC";
+$sql = "SELECT * FROM potholes WHERE repaired=0";
 $result = $conn->query($sql);
 
 ?>
