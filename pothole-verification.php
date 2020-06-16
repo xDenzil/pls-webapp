@@ -26,44 +26,25 @@ session_start();
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
-    <div class="dashboard-main-wrapper">
+    <div class="dashboard-main-wrapper bg-primary">
 
         <?php
         $_SESSION['link'] = 'verification';
         require_once('navigation.php'); // Dynamically loading the navigation bar from one source
         ?>
         <div class="dashboard-wrapper mp">
-            <div class="container mt-5 w-75">
-                <div class="card">
-                    <h5 class="card-header">Image Verification</h5>
+            <div class="container pt-5 w-75">
+                <div class="card text-dark">
+                    <div class="card-header">
+                        Pothole Verification
+                    </div>
                     <div class="card-body">
-                        <div class="col-12 figure m-0 p-0">
-                            <img src="https://cloud-cube.s3.amazonaws.com/qzcmng30imti/public/pothole-1592242845.228572.jpg">
+                        <div class="col-12 figure m-0 p-0 text-center">
+                            <img src="img-test.jpeg">
                         </div>
-                        <div class="table-responsive">
-                            <table id="example" class="table table-striped table-bordered second" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Index</th>
-                                        <th>Latitude</th>
-                                        <th>Longitude</th>
-                                        <th>Street</th>
-                                        <th>Parish</th>
-                                        <th>Detected</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td> 0 </td>
-                                        <td> 0 </td>
-                                        <td> 0 </td>
-                                        <td> 0 </td>
-                                        <td> 0 </td>
-                                        <td> 0 </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
+                    </div>
+                    <div class="card-footer text-muted">
                         <a href="#" class="btn btn-primary">Previous</a>
                         <a href="#" class="btn btn-primary">Next</a>
                     </div>

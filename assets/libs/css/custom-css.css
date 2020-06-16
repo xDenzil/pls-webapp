@@ -66,8 +66,9 @@
   overflow: hidden; /*hide bounds of image */
 }
 
+/* 
 .figure img {
   margin: -10% 0 -10% 0;
-  display: block; /*remove inline-block spaces*/
-  width: 100%; /*make image streatch*/
-}
+  display: block;
+  width: 100%; 
+} */
