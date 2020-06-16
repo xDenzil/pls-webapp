@@ -129,10 +129,11 @@ $result = $conn->query($sql);
                                                 <th>Index</th>
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
-                                                <th>Street/Road</th>
+                                                <th>Street</th>
                                                 <th>Parish</th>
-                                                <th>Detection Date</th>
+                                                <th>Detected</th>
                                                 <th>Status</th>
+                                                <th>Image</th>
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>
@@ -161,6 +162,7 @@ $result = $conn->query($sql);
                                                         echo ("<span class='mr-2'> <span class='badge-dot badge-secondary'></span>Urgent</span>");
                                                     };
                                                     echo ("</td>
+                                                                <td><a href='https://cloud-cube.s3.amazonaws.com/qzcmng30imti/public/" . $row['img_url'] . "' target='_blank'>Image</a></td>
                                                                 <td>
                                                                 <a href='map.php?lat=" . $row['latitude'] . "&long=" . $row['longitude'] . "' class='btn btn-primary btn-xs' role='button'>Pinpoint</a>
                                                                 </td>
@@ -176,7 +178,6 @@ $result = $conn->query($sql);
                                                 echo "<p>No results at the moment.</p>";
                                             }
                                             $conn->close();
-
                                             ?>
                                         </tbody>
                                     </table>

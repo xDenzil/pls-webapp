@@ -189,12 +189,13 @@ $result_repaired = $conn->query($query_repaired);
                                         if ($result_detected->num_rows > 0) {
                                             // output data of each row
                                             for ($i = 0; $i < 3; $i++) {
-                                                $row2 = $result_detected->fetch_assoc();
-                                                echo ("<tr>
+                                                while ($row2 = $result_detected->fetch_assoc()) {
+                                                    echo ("<tr>
                                                             <td>" . $row2["street"] . "</td>
                                                             <td>" . $row2["parish"] . "</td>
                                                             <td>" . time_elapsed_string($row2["date"], true) . "</td>
                                                         </tr>");
+                                                }
                                             }
                                         } else {
                                             echo "<tr><td>No results at the moment.</td></tr>";
@@ -227,18 +228,18 @@ $result_repaired = $conn->query($query_repaired);
                                         if ($result_urgent->num_rows > 0) {
                                             // output data of each row
                                             for ($z = 0; $z < 3; $z++) {
-                                                $row3 = $result_urgent->fetch_assoc();
-                                                echo ("<tr>
+                                                while ($row3 = $result_urgent->fetch_assoc()) {
+                                                    echo ("<tr>
                                                             <td>" . $row3["street"] . "</td>
                                                             <td>" . $row3["parish"] . "</td>
                                                             <td>" . $row3["date"] . "</td>
                                                         </tr>");
+                                                }
                                             }
                                         } else {
                                             echo "<tr><td>No results at the moment.</td></tr>";
                                         }
                                         $conn->close();
-
                                         ?>
                                     </tbody>
                                 </table>

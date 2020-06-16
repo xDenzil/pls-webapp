@@ -10,7 +10,7 @@ $map = '';
 $dashboard = '';
 $active = '';
 $repaired = '';
-$database_nav = '';
+$verification = '';
 
 
 if ($_SESSION['link'] == 'map') {
@@ -19,10 +19,10 @@ if ($_SESSION['link'] == 'map') {
     $dashboard = 'active';
 } else if ($_SESSION['link'] == 'active') {
     $active = 'active';
-    $database_nav = 'show';
 } else if ($_SESSION['link'] == 'repaired') {
     $repaired = 'active';
-    $database_nav = 'show';
+} else if ($_SESSION['link'] == 'repaired') {
+    $verification = 'active';
 }
 
 
@@ -39,19 +39,9 @@ if ($_SESSION['link'] == 'map') {
                     <li class="nav-item"><a class="nav-link <?php echo $dashboard ?>" href="dashboard.php"><i class="fa fa-fw fa-rocket"></i>Dashboard <span class="badge badge-success">6</span></a></li>
                     <li class="nav-divider">Data</li>
                     <li class="nav-item"><a class="nav-link <?php echo $map ?>" href="map.php"><i class="fa fa-fw fa-map-marker-alt"></i>Pothole Map<span class="badge badge-success">6</span></a></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-database"></i>Database</a>
-                        <div id="submenu-5" class="submenu collapse <?php echo $database_nav ?>">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link p-3 <?php echo $active ?>" href="active.php">Active Potholes</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link p-3  <?php echo $repaired ?>" href="repaired.php">Repaired Potholes</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                    <li class="nav-item"><a class="nav-link <?php echo $active ?>" href="active.php"><i class="fa fa-fw fa-database"></i>Active Potholes<span class="badge badge-success">6</span></a></li>
+                    <li class="nav-item"><a class="nav-link <?php echo $repaired ?>" href="repaired.php"><i class="fa fa-fw fa-database"></i>Repaired Potholes<span class="badge badge-success">6</span></a></li>
+                    <li class="nav-item"><a class="nav-link <?php echo $verification ?>" href="pothole-verification.php"><i class="fa fa-fw fa-pen-square"></i>Pothole Verification<span class="badge badge-success">6</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-fw fa-chart-pie"></i>Statistics<span class="badge badge-success">6</span></a></li>
                     <li class="nav-divider">User</li>
                     </li>
