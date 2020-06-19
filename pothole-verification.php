@@ -33,25 +33,35 @@ session_start();
         require_once('navigation.php'); // Dynamically loading the navigation bar from one source
         ?>
         <div class="dashboard-wrapper mp">
-            <div class="container pt-5 w-75">
-                <div class="card text-dark">
-                    <div class="card-header">
-                        Pothole Verification
-                    </div>
-                    <div class="card-body">
-                        <div class="col-12 figure m-0 p-0 text-center">
-                            <img src="img-test.jpeg">
-                        </div>
 
+
+
+            <div class="row h-100 p-0 text-dark">
+                <div class="col-lg-8 col-sm-12 p-0" style="background-color:#efeff6">
+                    <div class="figure m-0 p-0 text-center">
+                        <img src="img-test.jpeg">
                     </div>
-                    <div class="card-footer text-muted">
+                    <div class="bg-white m-neg border px-3">
                         <a href="#" class="btn btn-primary">Previous</a>
                         <a href="#" class="btn btn-primary">Next</a>
                     </div>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>1</th>
+                                <td>Tavern Avenue</td>
+                                <td>St. Andrew</td>
+                                <td>6-12-2020 4pm</td>
+                                <td>Pinpoint</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <?php require_once('footer.php'); ?>
+
+
+
 
         </div>
     </div>
