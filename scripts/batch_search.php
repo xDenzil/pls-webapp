@@ -45,7 +45,6 @@ if (isset($_GET['batch_search'])) {
     $query = "SELECT * FROM potholes WHERE id IS NOT NULL $street_sql $status_sql $date_sql;";
     $result = mysqli_query($conn, $query) or die("Failed to get data.");
     $row_cnt = mysqli_num_rows($result);
-
     //echo ($query);
     //printf("Result set has %d rows.\n", $row_cnt);
     /* close result set */
