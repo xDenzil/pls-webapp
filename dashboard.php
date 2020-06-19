@@ -189,7 +189,7 @@ $result_repaired = $conn->query($query_repaired);
                                         if ($result_detected->num_rows > 0) {
                                             // output data of each row
                                             for ($i = 0; $i < 3; $i++) {
-                                                while ($row2 = $result_detected->fetch_assoc()) {
+                                                if ($row2 = $result_detected->fetch_assoc()) {
                                                     echo ("<tr>
                                                             <td>" . $row2["street"] . "</td>
                                                             <td>" . $row2["parish"] . "</td>
@@ -228,7 +228,7 @@ $result_repaired = $conn->query($query_repaired);
                                         if ($result_urgent->num_rows > 0) {
                                             // output data of each row
                                             for ($z = 0; $z < 3; $z++) {
-                                                while ($row3 = $result_urgent->fetch_assoc()) {
+                                                if ($row3 = $result_urgent->fetch_assoc()) {
                                                     echo ("<tr>
                                                             <td>" . $row3["street"] . "</td>
                                                             <td>" . $row3["parish"] . "</td>
