@@ -52,4 +52,5 @@ if ($_SESSION['link'] == 'map') {
     </div>
 </div>
 
+
 </html>
