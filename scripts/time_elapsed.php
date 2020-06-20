@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('America/Jamaica');
+
 function time_elapsed_string($datetime, $full = false)
 {
     $now = new DateTime;
