@@ -140,7 +140,7 @@ $result = $conn->query($sql);
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            <!--  -->
                                             <?php
                                             if ($result->num_rows > 0) {
                                                 // output data of each row

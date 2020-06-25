@@ -2,6 +2,77 @@
 
 session_start();
 
+include './database/connection.php';
+
+
+
+if (isset($_POST['skip'])) {
+    $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
+    $nextresult = $conn->query($nextquery);
+    if (mysqli_num_rows($nextresult) > 0) {
+        $nextrow = $nextresult->fetch_assoc();
+        $nextid  = $nextrow['id'];
+        $_SESSION['current_pothole_v'] = $nextid;
+    } else {
+        echo ('no more results');
+    }
+} else if (isset($_POST['verify'])) {
+    $verify_query = "UPDATE potholes set verified=true where id=" . $_SESSION['current_pothole_v'] . ";";
+    $verify_result = $conn->query($verify_query);
+
+
+    $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
+    $nextresult = $conn->query($nextquery);
+    if (mysqli_num_rows($nextresult) > 0) {
+        $nextrow = $nextresult->fetch_assoc();
+        $nextid  = $nextrow['id'];
+        $_SESSION['current_pothole_v'] = $nextid;
+    } else {
+        echo ('no more results');
+    }
+} else if (isset($_POST['previous'])) {
+    $nextquery = "SELECT * FROM potholes WHERE verified=false AND id = (select max(id) from potholes where id < " . $_SESSION['current_pothole_v'] . ") ORDER BY id ASC LIMIT 1";
+    $nextresult = $conn->query($nextquery);
+    if (mysqli_num_rows($nextresult) > 0) {
+        $nextrow = $nextresult->fetch_assoc();
+        $nextid  = $nextrow['id'];
+        $_SESSION['current_pothole_v'] = $nextid;
+    } else {
+        echo ('no more results');
+    }
+} else if (isset($_POST['urgent'])) {
+    $urgent_query = "UPDATE potholes set status='Urgent' where id=" . $_SESSION['current_pothole_v'] . ";";
+    $update_result = $conn->query($urgent_query);
+
+    $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
+    $nextresult = $conn->query($nextquery);
+    if (mysqli_num_rows($nextresult) > 0) {
+        $nextrow = $nextresult->fetch_assoc();
+        $nextid  = $nextrow['id'];
+        $_SESSION['current_pothole_v'] = $nextid;
+    } else {
+        echo ('no more results');
+    }
+} else if (isset($_POST['delete'])) {
+    $delete_query = "DELETE from potholes where id=" . $_SESSION['current_pothole_v'] . ";";
+    $delete_result = $conn->query($delete_query);
+
+    $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
+    $nextresult = $conn->query($nextquery);
+    if (mysqli_num_rows($nextresult) > 0) {
+        $nextrow = $nextresult->fetch_assoc();
+        $nextid  = $nextrow['id'];
+        $_SESSION['current_pothole_v'] = $nextid;
+    } else {
+        echo ('no more results');
+    }
+} else {
+    $sql = "SELECT * FROM potholes WHERE verified=false LIMIT 1";
+    $result = $conn->query($sql);
+    $nextrow = $result->fetch_assoc();
+    $_SESSION['current_pothole_v'] = $nextrow['id'];
+}
+
 
 
 ?>
@@ -32,32 +103,49 @@ session_start();
         $_SESSION['link'] = 'verification';
         require_once('navigation.php'); // Dynamically loading the navigation bar from one source
         ?>
-        <div class="dashboard-wrapper mp">
+        <div class="dashboard-wrapper" style="background-color:#efeff6;">
 
 
 
-            <div class="row h-100 p-0 text-dark">
-                <div class="col-lg-8 col-sm-12 p-0" style="background-color:#efeff6">
-                    <div class="figure m-0 p-0 text-center">
-                        <img src="img-test.jpeg">
+            <div class="row p-0 text-dark">
+                <div class="col-12">
+                    <div class="card mx-auto">
+                        <img class=" card-img-top" src="https://felix-cloud-shared-1.s3.us-west-1.amazonaws.com/pls-open/saved-imgs/<?php echo $nextrow['img_url'] ?>" alt="Card image cap">
+                        <div class="card-body">
+                            <form class="bg-white m-neg d-flex flex-row justify-content-between" method="POST" action="#">
+                                <span>
+                                    <button class="btn btn-primary" name="verify" role="submit" type="submit">Verify</button>
+                                    <button class="btn btn-danger" name="delete" role="submit" type="submit">Delete</button>
+                                </span>
+                                <span>
+                                    <button class="btn btn-light" name="previous" role="submit" type="submit">Previous</button>
+                                    <button class="btn btn-danger" name="urgent" role="submit" type="submit">Mark Urgent</button>
+                                    <button class="btn btn-light" name="skip" role="submit" type="submit">Skip</button>
+                                </span>
+                            </form>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Street</th>
+                                        <th>Parish</th>
+                                        <th>Detected</th>
+                                        <th>Map</th>
+                                    </tr>
+                                <tbody>
+                                    <tr>
+                                        <td><?php echo $nextrow['id'] ?></th>
+                                        <td><?php echo $nextrow['street'] ?></td>
+                                        <td><?php echo $nextrow['parish'] ?></td>
+                                        <td><?php echo $nextrow['date'] ?></td>
+                                        <td><?php echo "<a href='map.php?lat=" . $nextrow['latitude'] . "&long=" . $nextrow['longitude'] . "'>Pinpoint</a>" ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="bg-white m-neg border px-3">
-                        <a href="#" class="btn btn-primary">Previous</a>
-                        <a href="#" class="btn btn-primary">Next</a>
-                    </div>
-                    <table class="table table-striped">
-                        <tbody>
-                            <tr>
-
-                                <td>1</th>
-                                <td>Tavern Avenue</td>
-                                <td>St. Andrew</td>
-                                <td>6-12-2020 4pm</td>
-                                <td>Pinpoint</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
+
             </div>
         </div>
     </div>
@@ -65,7 +153,7 @@ session_start();
     <!-- end main wrapper -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
-    <script src="./assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src=" ./assets/vendor/jquery/jquery-3.3.1.min.js"> </script>
     <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="./assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <script src="./assets/libs/js/main-js.js"></script>

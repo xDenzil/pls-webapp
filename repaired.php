@@ -62,44 +62,57 @@ $result = $conn->query($sql);
                                                 <th>Index</th>
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
-                                                <th>Street/Road</th>
+                                                <th>Street</th>
                                                 <th>Parish</th>
-                                                <th>Detection Date</th>
+                                                <th>Detected</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Image</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
                                         </thead>
+
+
                                         <tbody>
+
                                             <?php
                                             if ($result->num_rows > 0) {
                                                 // output data of each row
                                                 while ($row = $result->fetch_assoc()) {
+                                                    $date = date_create($row["date"]);
+                                                    $formatted_date = date_format($date, "d-m-y h:i A");
+
                                                     echo ("<tr>
-                                                                <td>" . $row["id"] . "</td>
-                                                                <td>" . $row['latitude'] . "</td>
-                                                                <td>" . $row['longitude'] . "</td>
-                                                                <td>" . $row['street'] . "</td>
-                                                                <td>" . $row['parish'] . "</td>
-                                                                <td>" . $row["date"] . "</td>
-                                                                <td>");
+                    <td>" . $row["id"] . "</td>
+                    <td>" . $row['latitude'] . "</td>
+                    <td>" . $row['longitude'] . "</td>
+                    <td>" . $row['street'] . "</td>                                                                
+                    <td>" . $row['parish'] . "</td>
+                    <td>" . $formatted_date . "</td>
+                    <td>");
                                                     if ($row["status"] == 'Normal') {
                                                         echo ("<span class='mr-2'> <span class='badge-dot badge-primary'></span>Normal</span>");
                                                     } else {
                                                         echo ("<span class='mr-2'> <span class='badge-dot badge-secondary'></span>Urgent</span>");
                                                     };
                                                     echo ("</td>
-                                                                <td>
-                                                                <a href='map.php?lat=" . $row['latitude'] . "&long=" . $row['longitude'] . "' class='btn btn-primary btn-xs' role='button'>Pinpoint</a>
-                                                                   <a href='./scripts/actions.php?id=" . $row['id'] . "&action=unrepaired' class='btn btn-dark btn-xs' role='button'>Revert Repaired Status</a>
-                                                                <a href='./scripts/actions.php?id=" . $row['id'] . "&action=delete' role='button' class='btn btn-secondary btn-xs'>Delete</a>
-                                                                </td>
-                                                            </tr>");
+                    <td><a href='https://cloud-cube.s3.amazonaws.com/qzcmng30imti/public/" . $row['img_url'] . "' target='_blank'>Image</a></td>
+                    <td>
+                    <a href='map.php?lat=" . $row['latitude'] . "&long=" . $row['longitude'] . "' class='btn btn-primary btn-xs' role='button'>Pinpoint</a>
+                    </td>
+                    <td>
+                    <a href='./scripts/actions.php?id=" . $row['id'] . "&action=unrepaired' class='btn btn-warning btn-xs' role='button'>Undo Repaired</a>
+                    </td>
+                    <td>
+                    <a href='./scripts/actions.php?id=" . $row['id'] . "&action=delete' role='button' class='btn btn-secondary btn-xs'>Delete</a>
+                    </td>
+                </tr>");
                                                 }
                                             } else {
-                                                echo "0 results";
+                                                echo "<p>No results at the moment.</p>";
                                             }
                                             $conn->close();
-
                                             ?>
                                         </tbody>
                                     </table>

@@ -180,7 +180,7 @@ $result_repaired = $conn->query($query_repaired);
                                         <tr>
                                             <th>Street</th>
                                             <th>Parish</th>
-                                            <th>Timestamp</th>
+                                            <th>Detected</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -219,7 +219,7 @@ $result_repaired = $conn->query($query_repaired);
                                         <tr>
                                             <th>Street</th>
                                             <th>Parish</th>
-                                            <th>Date</th>
+                                            <th>Detected Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
