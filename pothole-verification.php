@@ -23,7 +23,6 @@ if (isset($_POST['skip'])) {
 
     $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
     $nextresult = $conn->query($nextquery);
-
     if (mysqli_num_rows($nextresult) > 0) {
         $nextrow = $nextresult->fetch_assoc();
         $nextid  = $nextrow['id'];
@@ -34,8 +33,6 @@ if (isset($_POST['skip'])) {
 } else if (isset($_POST['previous'])) {
     $nextquery = "SELECT * FROM potholes WHERE verified=false AND id = (select max(id) from potholes where id < " . $_SESSION['current_pothole_v'] . ") ORDER BY id ASC LIMIT 1";
     $nextresult = $conn->query($nextquery);
-
-    // should I flip these? I will
     if (mysqli_num_rows($nextresult) > 0) {
         $nextrow = $nextresult->fetch_assoc();
         $nextid  = $nextrow['id'];
@@ -97,7 +94,6 @@ if (isset($_POST['skip'])) {
 </head>
 
 <body>
-    <?php echo $nextquery ?>
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
