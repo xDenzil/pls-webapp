@@ -10,7 +10,7 @@ $show_skip = "<button class='btn btn-light' name='skip' role='submit' type='subm
 
 
 if (isset($_GET['id'])) {
-    $nextquery = "SELECT * FROM potholes WHERE id =" . $_GET['id'];
+    $nextquery = "SELECT * FROM potholes_cloudcube WHERE id =" . $_GET['id'];
     $nextresult = $conn->query($nextquery);
 
     if (mysqli_num_rows($nextresult) > 0) {
@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
         echo ('no more results');
     }
 } else if (isset($_POST['skip'])) {
-    $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
+    $nextquery = "SELECT * FROM potholes_cloudcube WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
     $nextresult = $conn->query($nextquery);
     if (mysqli_num_rows($nextresult) > 0) {
         $nextrow = $nextresult->fetch_assoc();
@@ -31,11 +31,11 @@ if (isset($_GET['id'])) {
         echo ('no more results');
     }
 } else if (isset($_POST['verify'])) {
-    $verify_query = "UPDATE potholes set verified=true where id=" . $_SESSION['current_pothole_v'] . ";";
+    $verify_query = "UPDATE potholes_cloudcube set verified=true where id=" . $_SESSION['current_pothole_v'] . ";";
     $verify_result = $conn->query($verify_query);
 
 
-    $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
+    $nextquery = "SELECT * FROM potholes_cloudcube WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
     $nextresult = $conn->query($nextquery);
     if (mysqli_num_rows($nextresult) > 0) {
         $nextrow = $nextresult->fetch_assoc();
@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
         echo ('no more results');
     }
 } else if (isset($_POST['previous'])) {
-    $nextquery = "SELECT * FROM potholes WHERE verified=false AND id = (select max(id) from potholes where id < " . $_SESSION['current_pothole_v'] . ") ORDER BY id ASC LIMIT 1";
+    $nextquery = "SELECT * FROM potholes_cloudcube WHERE verified=false AND id = (select max(id) from potholes_cloudcube where id < " . $_SESSION['current_pothole_v'] . ") ORDER BY id ASC LIMIT 1";
     $nextresult = $conn->query($nextquery);
     if (mysqli_num_rows($nextresult) > 0) {
         $nextrow = $nextresult->fetch_assoc();
@@ -55,10 +55,10 @@ if (isset($_GET['id'])) {
         echo ('no more results');
     }
 } else if (isset($_POST['urgent'])) {
-    $urgent_query = "UPDATE potholes set status='Urgent', verified=true where id=" . $_SESSION['current_pothole_v'] . ";";
+    $urgent_query = "UPDATE potholes_cloudcube set status='Urgent', verified=true where id=" . $_SESSION['current_pothole_v'] . ";";
     $update_result = $conn->query($urgent_query);
 
-    $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
+    $nextquery = "SELECT * FROM potholes_cloudcube WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
     $nextresult = $conn->query($nextquery);
     if (mysqli_num_rows($nextresult) > 0) {
         $nextrow = $nextresult->fetch_assoc();
@@ -68,10 +68,10 @@ if (isset($_GET['id'])) {
         echo ('no more results');
     }
 } else if (isset($_POST['delete'])) {
-    $delete_query = "DELETE from potholes where id=" . $_SESSION['current_pothole_v'] . ";";
+    $delete_query = "DELETE from potholes_cloudcube where id=" . $_SESSION['current_pothole_v'] . ";";
     $delete_result = $conn->query($delete_query);
 
-    $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
+    $nextquery = "SELECT * FROM potholes_cloudcube WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
     $nextresult = $conn->query($nextquery);
     if (mysqli_num_rows($nextresult) > 0) {
         $nextrow = $nextresult->fetch_assoc();
@@ -81,7 +81,7 @@ if (isset($_GET['id'])) {
         echo ('no more results');
     }
 } else {
-    $sql = "SELECT * FROM potholes WHERE verified=false LIMIT 1";
+    $sql = "SELECT * FROM potholes_cloudcube WHERE verified=false LIMIT 1";
     $result = $conn->query($sql);
     $nextrow = $result->fetch_assoc();
     $_SESSION['current_pothole_v'] = $nextrow['id'];
@@ -124,7 +124,7 @@ if (isset($_GET['id'])) {
             <div class="row p-0 text-dark">
                 <div class="col-12">
                     <div class="card mx-auto">
-                        <img class=" card-img-top" src="https://felix-cloud-shared-1.s3.us-west-1.amazonaws.com/pls-open/saved-imgs/<?php echo $nextrow['img_url'] ?>" alt="Pothole Image">
+                        <img class=" card-img-top" src="https://cloud-cube.s3.amazonaws.com/n98xan0f75tk/public/<?php echo $nextrow['img_url'] ?>" alt="Pothole Image">
                         <div class="card-body">
                             <form class="bg-white m-neg d-flex flex-row justify-content-between" method="POST" action="#">
                                 <span>
@@ -132,9 +132,9 @@ if (isset($_GET['id'])) {
                                     <button class="btn btn-danger" name="delete" role="submit" type="submit">Delete</button>
                                 </span>
                                 <span>
-                                    <?php isset($_GET['id']) ? $show_previous : '' ?>
+                                    <?php echo (isset($_GET['id']) ? '' : $show_previous); ?>
                                     <button class="btn btn-danger" name="urgent" role="submit" type="submit">Mark Urgent</button>
-                                    <?php isset($_GET['id']) ? $show_skip : '' ?>
+                                    <?php echo (isset($_GET['id']) ? '' : $show_skip); ?>
                                 </span>
                             </form>
                             <table class="table table-striped">
