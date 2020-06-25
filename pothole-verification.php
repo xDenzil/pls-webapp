@@ -9,18 +9,7 @@ $show_skip = "<button class='btn btn-light' name='skip' role='submit' type='subm
 
 
 
-if (isset($_GET['id'])) {
-    $nextquery = "SELECT * FROM potholes WHERE id =" . $_GET['id'];
-    $nextresult = $conn->query($nextquery);
-
-    if (mysqli_num_rows($nextresult) > 0) {
-        $nextrow = $nextresult->fetch_assoc();
-        $nextid  = $nextrow['id'];
-        $_SESSION['current_pothole_v'] = $nextid;
-    } else {
-        echo ('no more results');
-    }
-} else if (isset($_POST['skip'])) {
+if (isset($_POST['skip'])) {
     $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
     $nextresult = $conn->query($nextquery);
     if (mysqli_num_rows($nextresult) > 0) {
@@ -55,17 +44,26 @@ if (isset($_GET['id'])) {
         echo ('no more results');
     }
 } else if (isset($_POST['urgent'])) {
-    $urgent_query = "UPDATE potholes set status='Urgent', verified=true where id=" . $_SESSION['current_pothole_v'] . ";";
-    $update_result = $conn->query($urgent_query);
 
-    $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
-    $nextresult = $conn->query($nextquery);
-    if (mysqli_num_rows($nextresult) > 0) {
-        $nextrow = $nextresult->fetch_assoc();
-        $nextid  = $nextrow['id'];
-        $_SESSION['current_pothole_v'] = $nextid;
+
+    if (isset($_GET['id'])) {
+        $_SESSION['current_pothole_v'] = $_GET['id'];
+        $urgent_query = "UPDATE potholes set status='Urgent', verified=true where id=" . $_GET['id'] . ";";
+        $update_result = $conn->query($urgent_query);
+        header('Location: active.php');
     } else {
-        echo ('no more results');
+        $urgent_query = "UPDATE potholes set status='Urgent', verified=true where id=" . $_SESSION['current_pothole_v'] . ";";
+        $update_result = $conn->query($urgent_query);
+
+        $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
+        $nextresult = $conn->query($nextquery);
+        if (mysqli_num_rows($nextresult) > 0) {
+            $nextrow = $nextresult->fetch_assoc();
+            $nextid  = $nextrow['id'];
+            $_SESSION['current_pothole_v'] = $nextid;
+        } else {
+            echo ('no more results');
+        }
     }
 } else if (isset($_POST['delete'])) {
     $delete_query = "DELETE from potholes where id=" . $_SESSION['current_pothole_v'] . ";";
@@ -77,6 +75,17 @@ if (isset($_GET['id'])) {
         $nextrow = $nextresult->fetch_assoc();
         $nextid  = $nextrow['id'];
         $_SESSION['current_pothole_v'] = $nextid;
+    } else {
+        echo ('no more results');
+    }
+} else if (isset($_GET['id'])) {
+    $nextquery = "SELECT * FROM potholes WHERE id =" . $_GET['id'];
+    $nextresult = $conn->query($nextquery);
+    $_SESSION['current_pothole_v'] = $_GET['id'];
+
+    if (mysqli_num_rows($nextresult) > 0) {
+        $nextrow = $nextresult->fetch_assoc();
+        $nextid  = $nextrow['id'];
     } else {
         echo ('no more results');
     }
@@ -132,9 +141,9 @@ if (isset($_GET['id'])) {
                                     <button class="btn btn-danger" name="delete" role="submit" type="submit">Delete</button>
                                 </span>
                                 <span>
-                                    <?php isset($_GET['id']) ? $show_previous : '' ?>
+                                    <?php echo (isset($_GET['id']) ? '' : $show_previous); ?>
                                     <button class="btn btn-danger" name="urgent" role="submit" type="submit">Mark Urgent</button>
-                                    <?php isset($_GET['id']) ? $show_skip : '' ?>
+                                    <?php echo (isset($_GET['id']) ? '' : $show_skip); ?>
                                 </span>
                             </form>
                             <table class="table table-striped">
