@@ -138,7 +138,7 @@ if (isset($_POST['skip'])) {
                                         <td><?php echo $nextrow['street'] ?></td>
                                         <td><?php echo $nextrow['parish'] ?></td>
                                         <td><?php echo $nextrow['date'] ?></td>
-                                        <td><?php echo "<a href='map.php?lat=" . $nextrow['latitude'] . "&long=" . $nextrow['longitude'] . "'>Pinpoint</a>" ?></td>
+                                        <td><?php echo "<a href='map.php?lat=" . $nextrow['latitude'] . "&long=" . $nextrow['longitude'] . "' class='btn btn-primary btn-xs'>Pinpoint</a>" ?></td>
                                     </tr>
                                 </tbody>
                             </table>
