@@ -41,7 +41,7 @@ if (isset($_POST['skip'])) {
         echo ('no more results');
     }
 } else if (isset($_POST['urgent'])) {
-    $urgent_query = "UPDATE potholes set status='Urgent' where id=" . $_SESSION['current_pothole_v'] . ";";
+    $urgent_query = "UPDATE potholes set status='Urgent', verified=true where id=" . $_SESSION['current_pothole_v'] . ";";
     $update_result = $conn->query($urgent_query);
 
     $nextquery = "SELECT * FROM potholes WHERE id >" . $_SESSION['current_pothole_v'] . " AND verified=false ORDER BY id ASC LIMIT 1";
