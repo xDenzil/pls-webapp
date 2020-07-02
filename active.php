@@ -105,7 +105,7 @@ $result = $conn->query($sql);
                                         </div>
 
                                         <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
-                                            <input class="btn disabled btn-success text-white btn-block rounded-2 mb-0" role="submit" name="batch_search" type="submit" value="Search">
+                                            <input class="btn disabled btn-success text-white btn-block rounded-2 mb-0" role="submit" name="batch_search" type="submit" value="Feature Disabled">
                                         </div>
                                     </div>
                                 </form>
