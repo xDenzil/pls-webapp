@@ -65,7 +65,7 @@ $result = $conn->query($sql);
                         <div class="card">
                             <div class="card-header">Batch Operations</div>
                             <div class="card-body">
-                                <form class="form-search" method="GET" action="./scripts/batch_search.php">
+                                <form class="form-search">
                                     <div class="row  align-items-end">
 
                                         <div class="col-md-6 col-lg-4 pb-2 pb-lg-0">
