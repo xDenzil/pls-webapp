@@ -59,7 +59,7 @@ $result = $conn->query($sql);
                     </div>
                 </div>
 
-                <!-- SEARCH FIELDS -->
+                <!-- SEARCH FIELDS 
                 <div class="row justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
@@ -112,7 +112,7 @@ $result = $conn->query($sql);
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row">
                     <!-- ============================================================== -->
