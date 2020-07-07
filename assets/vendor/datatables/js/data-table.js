@@ -12,7 +12,7 @@ jQuery(document).ready(function ($) {
   if ($("table.second").length) {
     $(document).ready(function () {
       var table = $("table.second").DataTable({
-        order: [[5, "asc"]], //@denzil: this is where I order by the 5th column
+        order: [[0, "desc"]], //@denzil: this is where I order by the 5th column
         lengthChange: false,
         buttons: [
           {
