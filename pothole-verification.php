@@ -133,7 +133,7 @@ if (isset($_POST['skip'])) {
             <div class="row p-0 text-dark">
                 <div class="col-12">
                     <div class="card mx-auto">
-                        <img class=" card-img-top" src="https://felix-cloud-shared-1.s3.us-west-1.amazonaws.com/pls-open/saved-imgs/<?php echo $nextrow['img_url'] ?>" alt="Pothole Image">
+                        <img class=" card-img-top" src="https://cloud-cube.s3.amazonaws.com/qqfz0tkdhdvt/public/<?php echo $nextrow['img_url'] ?>" alt="Pothole Image">
                         <div class="card-body">
                             <form class="bg-white m-neg d-flex flex-row justify-content-between" method="POST" action="#">
                                 <span>
