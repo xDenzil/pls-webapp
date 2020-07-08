@@ -1,4 +1,4 @@
-![Image of Screen 1](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/Web Application - 1.png)
+![Image of Screen 1](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_1.jpg)
 
 # pls-webapp
 
