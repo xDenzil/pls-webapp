@@ -1,10 +1,8 @@
 <?php
 
-
-session_start();
 include 'config.php'; // LOAD .ENV VARIABLES
-include './database/connection.php'; // CONNECT TO DB
-include './scripts/time_elapsed.php'; // TIME FROM FUNCTION
+include 'database/connection.php'; // CONNECT TO DB
+include 'scripts/time_elapsed.php'; // TIME FROM FUNCTION
 
 
 $query_detected = "SELECT * FROM potholes ORDER BY date DESC;";

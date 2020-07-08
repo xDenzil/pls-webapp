@@ -1,7 +1,6 @@
 <?php
-require 'vendor/autoload.php';
+include 'config.php';
 
-session_start();
 if (isset($_GET['lat']) && isset($_GET['long'])) {
     $path = 'pinpoint';
     $latitude = $_GET['lat'];
@@ -13,8 +12,6 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
     $longitude = -77.363632;
     $zoom = 10;
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -134,8 +131,6 @@ if (isset($_GET['lat']) && isset($_GET['long'])) {
 
                         function doNothing() {}
                     }
-
-
                 }
             </script>
             <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>

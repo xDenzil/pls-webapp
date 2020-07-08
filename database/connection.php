@@ -1,5 +1,4 @@
 <?php
-include '../config.php';
 
 $servername = $_ENV['DB_SERVER_NAME'];
 $username = $_ENV['DB_USERNAME'];

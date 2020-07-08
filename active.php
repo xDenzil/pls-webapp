@@ -1,6 +1,8 @@
 <?php
-session_start();
-include './database/connection.php';
+
+include 'config.php';
+include 'database/connection.php';
+
 
 $sql = "SELECT * FROM potholes WHERE repaired=0";
 $result = $conn->query($sql);
@@ -59,7 +61,7 @@ $result = $conn->query($sql);
                     </div>
                 </div>
 
-                <!-- SEARCH FIELDS 
+
                 <div class="row justify-content-center">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
@@ -105,14 +107,14 @@ $result = $conn->query($sql);
                                         </div>
 
                                         <div class="col-md-6 col-lg-2 pb-2 pb-lg-0">
-                                            <input class="btn disabled btn-success text-white btn-block rounded-2 mb-0" role="submit" name="batch_search" type="submit" value="Feature Disabled">
+                                            <input class="btn disabled btn-success text-white btn-block rounded-2 mb-0" name="batch_search" value="Feature Disabled">
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <div class="row">
                     <!-- ============================================================== -->

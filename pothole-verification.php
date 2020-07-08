@@ -2,11 +2,11 @@
 
 session_start();
 
-include './database/connection.php';
+include 'config.php';
+include 'database/connection.php';
 
 $show_previous = "<button class='btn btn-light' name='previous' role='submit' type='submit'>Previous</button>";
 $show_skip = "<button class='btn btn-light' name='skip' role='submit' type='submit'>Skip</button>";
-
 
 
 if (isset($_POST['skip'])) {
