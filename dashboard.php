@@ -1,5 +1,10 @@
 <?php
 
+require 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 session_start();
 include './database/connection.php';
 include './scripts/time_elapsed.php';
@@ -32,6 +37,7 @@ $result_repaired = $conn->query($query_repaired);
 </head>
 
 <body>
+    <?php echo $_ENV['DB_NAME'] ?>
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
