@@ -1,9 +1,12 @@
 <?php
 session_start();
-include './database/connection.php';
+
+include 'config.php';
+include 'database/connection.php';
 
 $sql = "SELECT * FROM potholes WHERE repaired=1";
 $result = $conn->query($sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +27,8 @@ $result = $conn->query($sql);
 </head>
 
 <body>
+    <?php echo $_ENV['DB_NAME'] ?>
+    <?php echo $_ENV['DB_USERNAME'] ?>
     <div class="dashboard-main-wrapper">
         <?php
         $_SESSION['link'] = 'repaired';

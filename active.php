@@ -4,10 +4,6 @@ include './database/connection.php';
 
 $sql = "SELECT * FROM potholes WHERE repaired=0";
 $result = $conn->query($sql);
-
-require 'vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 ?>
 
 
@@ -34,7 +30,7 @@ $dotenv->load();
 </head>
 
 <body>
-    <?php echo $_ENV['DB_NAME'] ?>
+
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->

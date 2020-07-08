@@ -2,8 +2,10 @@
 
 
 session_start();
-include './database/connection.php';
-include './scripts/time_elapsed.php';
+include 'config.php'; // LOAD .ENV VARIABLES
+include './database/connection.php'; // CONNECT TO DB
+include './scripts/time_elapsed.php'; // TIME FROM FUNCTION
+
 
 $query_detected = "SELECT * FROM potholes ORDER BY date DESC;";
 $query_urgent = "SELECT * FROM potholes WHERE status='Urgent' AND repaired=0 ORDER BY date DESC;";
