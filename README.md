@@ -1,5 +1,3 @@
-![Image of Screen 1](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_1.jpg)
-
 # pls-webapp
 
 ## What is it?
@@ -13,3 +11,9 @@ The web portal receives pothole data sent in real time by the object detections 
 - Viewing pothole markers on a Google Maps API powered interface
 - Verifying pothole images
 - Searching, sorting, and downloading pothole data
+
+![Image of Screen 1](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_1.jpg)
+
+![Image of Screen 2](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_3.jpg)
+
+![Image of Screen 3](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_3.jpg)
