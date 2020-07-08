@@ -16,7 +16,7 @@ The web portal receives pothole data sent in real time by the object detections 
 
 View statistics on current active, repaired, urgent potholes.
 
-![Image of Screen 1](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_1small.jpg)
+![Image of Screen 1](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_1.jpg)
 
 ## Data Management
 
@@ -24,8 +24,12 @@ Searching, sorting, and downloading pothole data.
 
 ![Image of Screen 2](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_2.jpg)
 
-## Statistics
+## Insight
 
-View statistics on current active, repaired, urgent potholes.
+View pothole images and map geolocation.
 
 ![Image of Screen 3](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_3.jpg)
+
+![Image of Screen 4](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_4.jpg)
+
+![Image of Screen 6](https://github.com/xDenzil/pls-webapp/blob/dev-B/images/demo_screens/screenshot_6.jpg)
